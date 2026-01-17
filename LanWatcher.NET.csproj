@@ -11,8 +11,8 @@
     <Company>Your Company</Company>
     <Product>LanWatcher.NET</Product>
     <Description>A powerful network device discovery and port scanning tool built with Blazor</Description>
-    <PackageProjectUrl>https://github.com/yourusername/LanWatcher.NET</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/yourusername/LanWatcher.NET</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ravindrabhartiya/LANWatcher.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ravindrabhartiya/LANWatcher.NET</RepositoryUrl>
     <PackageTags>network;scanner;blazor;device-discovery;port-scanner</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>

@@ -46,8 +46,8 @@ The interactive network map shows all discovered devices with their types and co
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/LanWatcher.NET.git
-cd LanWatcher.NET
+git clone https://github.com/ravindrabhartiya/LANWatcher.NET.git
+cd LANWatcher.NET
 ```
 
 2. Build the project:
@@ -139,7 +139,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
 
-Project Link: [https://github.com/yourusername/LanWatcher.NET](https://github.com/yourusername/LanWatcher.NET)
+Project Link: [https://github.com/ravindrabhartiya/LANWatcher.NET](https://github.com/ravindrabhartiya/LANWatcher.NET)
 
 ---
 
