@@ -1,0 +1,68 @@
+@using LanWatcher.Models
+@using LanWatcher.Services
+
+<div class="device-card @(IsSelected ? "selected" : "")" style="border-left: 4px solid @Device.DeviceColor" @onclick="OnCardClick">
+    <div class="device-header">
+        <span class="device-icon">@Device.DeviceIcon</span>
+        <div class="device-info">
+            <h4 class="device-ip">@Device.IpAddress</h4>
+            <span class="device-hostname">@Device.HostName</span>
+        </div>
+        <div class="device-status">
+            <span class="status-indicator @(Device.IsOnline ? "online" : "offline")"></span>
+            <span class="response-time">@Device.ResponseTime ms</span>
+        </div>
+    </div>
+    
+    <div class="device-type-badge" style="background-color: @Device.DeviceColor">
+        @Device.DeviceType
+    </div>
+
+    @if (Device.OpenPorts.Any())
+    {
+        <div class="ports-section">
+            <h5>Open Ports (@Device.OpenPorts.Count)</h5>
+            <div class="ports-list">
+                @foreach (var port in Device.OpenPorts.Take(ShowAllPorts ? Device.OpenPorts.Count : 5))
+                {
+                    <div class="port-badge" title="@port.ServiceName">
+                        <span class="port-number">@port.Port</span>
+                        <span class="port-service">@port.ServiceName</span>
+                        @if (!string.IsNullOrEmpty(port.Banner))
+                        {
+                            <span class="port-banner" title="@port.Banner">📋</span>
+                        }
+                    </div>
+                }
+                @if (Device.OpenPorts.Count > 5 && !ShowAllPorts)
+                {
+                    <button class="show-more-btn" @onclick="ToggleShowAllPorts" @onclick:stopPropagation="true">
+                        +@(Device.OpenPorts.Count - 5) more
+                    </button>
+                }
+            </div>
+        </div>
+    }
+
+    <div class="device-footer">
+        <span class="last-seen">Last seen: @Device.LastSeen.ToString("HH:mm:ss")</span>
+    </div>
+</div>
+
+@code {
+    [Parameter] public NetworkDevice Device { get; set; } = default!;
+    [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public EventCallback<NetworkDevice> OnSelected { get; set; }
+
+    private bool ShowAllPorts { get; set; }
+
+    private async Task OnCardClick()
+    {
+        await OnSelected.InvokeAsync(Device);
+    }
+
+    private void ToggleShowAllPorts()
+    {
+        ShowAllPorts = !ShowAllPorts;
+    }
+}

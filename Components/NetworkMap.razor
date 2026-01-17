@@ -1,0 +1,200 @@
+@using LanWatcher.Models
+@using LanWatcher.Services
+
+<div class="network-map-container">
+    <div class="map-header">
+        <h3>🗺️ Network Map</h3>
+        <div class="view-controls">
+            <button class="view-btn @(ViewMode == "grid" ? "active" : "")" @onclick='() => ViewMode = "grid"'>
+                ⊞ Grid
+            </button>
+            <button class="view-btn @(ViewMode == "list" ? "active" : "")" @onclick='() => ViewMode = "list"'>
+                ☰ List
+            </button>
+            <button class="view-btn @(ViewMode == "map" ? "active" : "")" @onclick='() => ViewMode = "map"'>
+                🌐 Topology
+            </button>
+        </div>
+    </div>
+
+    <div class="map-legend">
+        @foreach (var deviceType in Enum.GetValues<DeviceType>().Where(d => d != DeviceType.Unknown))
+        {
+            var tempDevice = new NetworkDevice { DeviceType = deviceType };
+            <div class="legend-item" style="border-color: @tempDevice.DeviceColor">
+                <span class="legend-icon">@tempDevice.DeviceIcon</span>
+                <span class="legend-label">@deviceType</span>
+            </div>
+        }
+    </div>
+
+    @if (ViewMode == "grid")
+    {
+        <div class="device-grid">
+            @foreach (var device in Devices)
+            {
+                <DeviceCard Device="@device" 
+                           IsSelected="@(SelectedDevice?.IpAddress == device.IpAddress)"
+                           OnSelected="SelectDevice" />
+            }
+        </div>
+    }
+    else if (ViewMode == "list")
+    {
+        <div class="device-table-container">
+            <table class="device-table">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>IP Address</th>
+                        <th>Hostname</th>
+                        <th>Response</th>
+                        <th>Open Ports</th>
+                        <th>Last Seen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var device in Devices)
+                    {
+                        <tr class="@(SelectedDevice?.IpAddress == device.IpAddress ? "selected" : "")" 
+                            @onclick="() => SelectDevice(device)">
+                            <td>
+                                <span class="status-dot @(device.IsOnline ? "online" : "offline")"></span>
+                            </td>
+                            <td>
+                                <span class="device-type-cell" style="color: @device.DeviceColor">
+                                    @device.DeviceIcon @device.DeviceType
+                                </span>
+                            </td>
+                            <td class="ip-cell">@device.IpAddress</td>
+                            <td>@device.HostName</td>
+                            <td>@device.ResponseTime ms</td>
+                            <td>
+                                <div class="port-chips">
+                                    @foreach (var port in device.OpenPorts.Take(5))
+                                    {
+                                        <span class="port-chip" title="@port.ServiceName">@port.Port</span>
+                                    }
+                                    @if (device.OpenPorts.Count > 5)
+                                    {
+                                        <span class="port-chip more">+@(device.OpenPorts.Count - 5)</span>
+                                    }
+                                </div>
+                            </td>
+                            <td>@device.LastSeen.ToString("HH:mm:ss")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else if (ViewMode == "map")
+    {
+        <div class="topology-map">
+            <div class="topology-center">
+                <div class="router-node">
+                    <span class="node-icon">🌐</span>
+                    <span class="node-label">Router</span>
+                    <span class="node-ip">@(Devices.FirstOrDefault(d => d.DeviceType == DeviceType.Router)?.IpAddress ?? "Gateway")</span>
+                </div>
+            </div>
+            <div class="topology-ring">
+                @{ var index = 0; }
+                @foreach (var device in Devices.Where(d => d.DeviceType != DeviceType.Router))
+                {
+                    var angle = (360.0 / Math.Max(Devices.Count - 1, 1)) * index;
+                    var radius = 180;
+                    var x = Math.Cos(angle * Math.PI / 180) * radius;
+                    var y = Math.Sin(angle * Math.PI / 180) * radius;
+                    
+                    <div class="device-node @(SelectedDevice?.IpAddress == device.IpAddress ? "selected" : "")"
+                         style="transform: translate(@(x)px, @(y)px); border-color: @device.DeviceColor"
+                         @onclick="() => SelectDevice(device)"
+                         title="@device.IpAddress - @device.HostName">
+                        <div class="connection-line" style="width: @(radius)px; transform: rotate(@(angle + 180)deg);"></div>
+                        <span class="node-icon" style="background-color: @device.DeviceColor">@device.DeviceIcon</span>
+                        <span class="node-ip">@device.IpAddress.Split('.').Last()</span>
+                    </div>
+                    index++;
+                }
+            </div>
+        </div>
+    }
+
+    @if (SelectedDevice != null)
+    {
+        <div class="device-detail-panel">
+            <div class="detail-header">
+                <span class="detail-icon" style="background-color: @SelectedDevice.DeviceColor">@SelectedDevice.DeviceIcon</span>
+                <div class="detail-title">
+                    <h4>@SelectedDevice.IpAddress</h4>
+                    <span>@SelectedDevice.HostName</span>
+                </div>
+                <button class="close-btn" @onclick="() => SelectedDevice = null">✕</button>
+            </div>
+            <div class="detail-content">
+                <div class="detail-section">
+                    <h5>Device Information</h5>
+                    <div class="detail-row">
+                        <span class="label">Type:</span>
+                        <span class="value" style="color: @SelectedDevice.DeviceColor">@SelectedDevice.DeviceType</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Status:</span>
+                        <span class="value @(SelectedDevice.IsOnline ? "online" : "offline")">
+                            @(SelectedDevice.IsOnline ? "Online" : "Offline")
+                        </span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Response Time:</span>
+                        <span class="value">@SelectedDevice.ResponseTime ms</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">MAC Address:</span>
+                        <span class="value">@SelectedDevice.MacAddress</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Last Seen:</span>
+                        <span class="value">@SelectedDevice.LastSeen.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                    </div>
+                </div>
+                
+                @if (SelectedDevice.OpenPorts.Any())
+                {
+                    <div class="detail-section">
+                        <h5>Open Ports (@SelectedDevice.OpenPorts.Count)</h5>
+                        <div class="ports-detail-list">
+                            @foreach (var port in SelectedDevice.OpenPorts)
+                            {
+                                <div class="port-detail-item">
+                                    <span class="port-num">@port.Port</span>
+                                    <span class="port-svc">@port.ServiceName</span>
+                                    <span class="port-proto">@port.Protocol</span>
+                                    @if (!string.IsNullOrEmpty(port.Banner))
+                                    {
+                                        <span class="port-banner-text" title="@port.Banner">
+                                            @(port.Banner.Length > 30 ? port.Banner.Substring(0, 30) + "..." : port.Banner)
+                                        </span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public List<NetworkDevice> Devices { get; set; } = new();
+    
+    private string ViewMode { get; set; } = "grid";
+    private NetworkDevice? SelectedDevice { get; set; }
+
+    private void SelectDevice(NetworkDevice device)
+    {
+        SelectedDevice = SelectedDevice?.IpAddress == device.IpAddress ? null : device;
+    }
+}

@@ -1,0 +1,85 @@
+@using LanWatcher.Models
+
+<div class="stats-dashboard">
+    <div class="stat-card">
+        <div class="stat-icon">📡</div>
+        <div class="stat-content">
+            <span class="stat-number">@TotalDevices</span>
+            <span class="stat-label">Devices Found</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🔌</div>
+        <div class="stat-content">
+            <span class="stat-number">@TotalOpenPorts</span>
+            <span class="stat-label">Open Ports</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🖥️</div>
+        <div class="stat-content">
+            <span class="stat-number">@WebServers</span>
+            <span class="stat-label">Web Servers</span>
+        </div>
+    </div>
+
+    <div class="stat-card warning">
+        <div class="stat-icon">⚠️</div>
+        <div class="stat-content">
+            <span class="stat-number">@PotentialRisks</span>
+            <span class="stat-label">Potential Risks</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🖨️</div>
+        <div class="stat-content">
+            <span class="stat-number">@Printers</span>
+            <span class="stat-label">Printers</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">📷</div>
+        <div class="stat-content">
+            <span class="stat-number">@Cameras</span>
+            <span class="stat-label">Cameras</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🏠</div>
+        <div class="stat-content">
+            <span class="stat-number">@SmartDevices</span>
+            <span class="stat-label">Smart Devices</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">❓</div>
+        <div class="stat-content">
+            <span class="stat-number">@UnknownDevices</span>
+            <span class="stat-label">Unknown</span>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public List<NetworkDevice> Devices { get; set; } = new();
+
+    private int TotalDevices => Devices.Count;
+    private int TotalOpenPorts => Devices.Sum(d => d.OpenPorts.Count);
+    private int WebServers => Devices.Count(d => d.DeviceType == DeviceType.WebServer);
+    private int Printers => Devices.Count(d => d.DeviceType == DeviceType.Printer);
+    private int Cameras => Devices.Count(d => d.DeviceType == DeviceType.Camera);
+    private int SmartDevices => Devices.Count(d => d.DeviceType == DeviceType.SmartHome || d.DeviceType == DeviceType.SmartTV);
+    private int UnknownDevices => Devices.Count(d => d.DeviceType == DeviceType.Unknown);
+
+    // Potential risks: devices with telnet, open databases, or many open ports
+    private int PotentialRisks => Devices.Count(d => 
+        d.OpenPorts.Any(p => p.Port == 23) || // Telnet
+        d.OpenPorts.Any(p => new[] { 3306, 5432, 27017, 6379 }.Contains(p.Port)) || // Databases
+        d.OpenPorts.Count > 10); // Many open ports
+}

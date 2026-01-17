@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>LanWatcher</RootNamespace>
+    <AssemblyName>LanWatcher.NET</AssemblyName>
+    <Version>1.0.0</Version>
+    <Authors>Your Name</Authors>
+    <Company>Your Company</Company>
+    <Product>LanWatcher.NET</Product>
+    <Description>A powerful network device discovery and port scanning tool built with Blazor</Description>
+    <PackageProjectUrl>https://github.com/yourusername/LanWatcher.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/yourusername/LanWatcher.NET</RepositoryUrl>
+    <PackageTags>network;scanner;blazor;device-discovery;port-scanner</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>

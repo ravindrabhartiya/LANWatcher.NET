@@ -1,0 +1,85 @@
+@using LanWatcher.Models
+@using LanWatcher.Services
+
+<div class="scan-controls">
+    <div class="control-group">
+        <label>IP Range</label>
+        <div class="ip-input-group">
+            <input type="text" @bind="Options.IpRange" class="ip-range-input" placeholder="192.168.1" disabled="@IsScanning" />
+            <span class="ip-separator">.</span>
+            <input type="number" @bind="Options.StartAddress" min="1" max="254" class="ip-number-input" disabled="@IsScanning" />
+            <span class="ip-separator">-</span>
+            <input type="number" @bind="Options.EndAddress" min="1" max="254" class="ip-number-input" disabled="@IsScanning" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label>Scan Type</label>
+        <div class="toggle-group">
+            <button class="toggle-btn @(Options.QuickScan ? "active" : "")" 
+                    @onclick="() => Options.QuickScan = true" 
+                    disabled="@IsScanning">
+                ⚡ Quick Scan
+            </button>
+            <button class="toggle-btn @(!Options.QuickScan ? "active" : "")" 
+                    @onclick="() => Options.QuickScan = false"
+                    disabled="@IsScanning">
+                🔍 Deep Scan
+            </button>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label>Options</label>
+        <div class="checkbox-group">
+            <label class="checkbox-label">
+                <input type="checkbox" @bind="Options.ScanPorts" disabled="@IsScanning" />
+                Scan Ports
+            </label>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label>Performance</label>
+        <div class="slider-group">
+            <span>Parallel Scans: @Options.MaxParallelScans</span>
+            <input type="range" min="10" max="100" @bind="Options.MaxParallelScans" disabled="@IsScanning" />
+        </div>
+        <div class="slider-group">
+            <span>Ping Timeout: @Options.PingTimeout ms</span>
+            <input type="range" min="100" max="3000" step="100" @bind="Options.PingTimeout" disabled="@IsScanning" />
+        </div>
+    </div>
+
+    <div class="control-group action-group">
+        @if (IsScanning)
+        {
+            <button class="btn btn-danger" @onclick="OnStopClicked">
+                ⏹ Stop Scan
+            </button>
+        }
+        else
+        {
+            <button class="btn btn-primary" @onclick="OnStartClicked">
+                🚀 Start Scan
+            </button>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public ScanOptions Options { get; set; } = new();
+    [Parameter] public bool IsScanning { get; set; }
+    [Parameter] public EventCallback OnStartScan { get; set; }
+    [Parameter] public EventCallback OnStopScan { get; set; }
+
+    private async Task OnStartClicked()
+    {
+        await OnStartScan.InvokeAsync();
+    }
+
+    private async Task OnStopClicked()
+    {
+        await OnStopScan.InvokeAsync();
+    }
+}

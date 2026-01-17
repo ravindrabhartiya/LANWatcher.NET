@@ -1,0 +1,48 @@
+@using LanWatcher.Models
+
+<div class="progress-panel @(Progress.IsScanning ? "scanning" : "")">
+    <div class="progress-header">
+        <h3>
+            @if (Progress.IsScanning)
+            {
+                <span class="spinner"></span>
+            }
+            Scan Progress
+        </h3>
+        <span class="elapsed-time">
+            @(Progress.ElapsedTime.ToString(@"mm\:ss"))
+        </span>
+    </div>
+
+    <div class="progress-bar-container">
+        <div class="progress-bar" style="width: @Progress.ProgressPercentage%"></div>
+        <span class="progress-text">@Progress.ProgressPercentage.ToString("F1")%</span>
+    </div>
+
+    <div class="progress-stats">
+        <div class="stat">
+            <span class="stat-label">Scanned</span>
+            <span class="stat-value">@Progress.ScannedAddresses / @Progress.TotalAddresses</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Devices Found</span>
+            <span class="stat-value highlight">@Progress.DevicesFound</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Ports Scanned</span>
+            <span class="stat-value">@Progress.PortsScanned</span>
+        </div>
+    </div>
+
+    <div class="current-action">
+        <span class="action-label">@Progress.CurrentAction</span>
+        @if (!string.IsNullOrEmpty(Progress.CurrentIp))
+        {
+            <span class="current-ip">@Progress.CurrentIp</span>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public ScanProgress Progress { get; set; } = new();
+}

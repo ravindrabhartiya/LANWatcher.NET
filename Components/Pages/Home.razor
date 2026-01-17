@@ -1,0 +1,87 @@
+﻿@page "/"
+@using LanWatcher.Models
+@using LanWatcher.Services
+@rendermode InteractiveServer
+@inject IScanService ScanService
+@implements IDisposable
+
+<PageTitle>Network Device Discovery</PageTitle>
+
+<div class="scanner-container">
+    <header class="scanner-header">
+        <div class="header-content">
+            <h1>🔍 Network Device Discovery</h1>
+            <p class="subtitle">Discover and map all devices on your local network</p>
+        </div>
+        <div class="header-info">
+            <span class="network-info">📡 Scanning: @ScanService.Options.IpRange.*</span>
+        </div>
+    </header>
+
+    <div class="scanner-layout">
+        <aside class="sidebar">
+            <ScanControls Options="@ScanService.Options"
+                         IsScanning="@ScanService.IsScanning"
+                         OnStartScan="StartScan"
+                         OnStopScan="StopScan" />
+
+            <ProgressPanel Progress="@_progress" />
+        </aside>
+
+        <main class="main-content">
+            <StatsDashboard Devices="@_devices" />
+            
+            <NetworkMap Devices="@_devices" />
+        </main>
+    </div>
+</div>
+
+@code {
+    private List<NetworkDevice> _devices = new();
+    private ScanProgress _progress = new();
+
+    protected override void OnInitialized()
+    {
+        ScanService.OnProgressChanged += HandleProgressChanged;
+        ScanService.OnDeviceFound += HandleDeviceFound;
+        ScanService.OnScanComplete += HandleScanComplete;
+        
+        _devices = ScanService.Devices;
+    }
+
+    private async Task StartScan()
+    {
+        _devices.Clear();
+        await ScanService.StartScanAsync();
+    }
+
+    private void StopScan()
+    {
+        ScanService.StopScan();
+    }
+
+    private void HandleProgressChanged(object? sender, ScanProgress progress)
+    {
+        _progress = progress;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void HandleDeviceFound(object? sender, NetworkDevice device)
+    {
+        _devices = ScanService.Devices;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void HandleScanComplete(object? sender, List<NetworkDevice> devices)
+    {
+        _devices = devices;
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        ScanService.OnProgressChanged -= HandleProgressChanged;
+        ScanService.OnDeviceFound -= HandleDeviceFound;
+        ScanService.OnScanComplete -= HandleScanComplete;
+    }
+}
