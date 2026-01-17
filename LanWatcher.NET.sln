@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanWatcher.NET", "LanWatcher.NET.csproj", "{F8D3FE85-2B81-45FE-A981-0D0628054105}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanWatcher.Tests", "tests\LanWatcher.Tests\LanWatcher.Tests.csproj", "{93CE044C-D86E-490F-9611-2CD434FFF59A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,23 @@ Global
 		{F8D3FE85-2B81-45FE-A981-0D0628054105}.Release|x64.Build.0 = Release|Any CPU
 		{F8D3FE85-2B81-45FE-A981-0D0628054105}.Release|x86.ActiveCfg = Release|Any CPU
 		{F8D3FE85-2B81-45FE-A981-0D0628054105}.Release|x86.Build.0 = Release|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Debug|x64.Build.0 = Debug|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Debug|x86.Build.0 = Debug|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Release|x64.ActiveCfg = Release|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Release|x64.Build.0 = Release|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Release|x86.ActiveCfg = Release|Any CPU
+		{93CE044C-D86E-490F-9611-2CD434FFF59A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{93CE044C-D86E-490F-9611-2CD434FFF59A} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal
