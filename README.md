@@ -137,7 +137,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+Your Name - Ravindra Bhartiya (satyamravindra@gmail.com)
 
 Project Link: [https://github.com/ravindrabhartiya/LANWatcher.NET](https://github.com/ravindrabhartiya/LANWatcher.NET)
 
