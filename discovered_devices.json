@@ -1,0 +1,1064 @@
+{
+  "lastUpdated": "2026-01-17T18:19:56.2303686-08:00",
+  "devices": [
+    {
+      "ipAddress": "192.168.4.24",
+      "hostName": "Unknown",
+      "macAddress": "4C:C9:5E:0D:26:28",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:17:07.6571674-08:00",
+      "firstDiscovered": "2026-01-17T11:06:01.8646837-08:00",
+      "discoveryCount": 9,
+      "responseTime": 411,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 7,
+          "serviceName": "Port 7",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 9,
+          "serviceName": "Port 9",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 11,
+          "serviceName": "Port 11",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 13,
+          "serviceName": "Port 13",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 15,
+          "serviceName": "Port 15",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 17,
+          "serviceName": "Port 17",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 18,
+          "serviceName": "Port 18",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 19,
+          "serviceName": "Port 19",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.4.51",
+      "hostName": "HP356321",
+      "macAddress": "DC:4A:3E:35:63:21",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:17:19.6392963-08:00",
+      "firstDiscovered": "2026-01-17T11:06:01.9617726-08:00",
+      "discoveryCount": 9,
+      "responseTime": 188,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.4.1",
+      "hostName": "lnldftloran1a4-Vl4081.network.microsoft.com",
+      "macAddress": "3C:5C:F1:45:60:8D",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:17:01.6742008-08:00",
+      "firstDiscovered": "2026-01-17T11:06:01.9634272-08:00",
+      "discoveryCount": 9,
+      "responseTime": 30,
+      "openPorts": [
+        {
+          "port": 646,
+          "serviceName": "Port 646",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 691,
+          "serviceName": "Port 691",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 860,
+          "serviceName": "Port 860",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 873,
+          "serviceName": "Port 873",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 902,
+          "serviceName": "Port 902",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 990,
+          "serviceName": "Port 990",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 993,
+          "serviceName": "IMAPS",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 995,
+          "serviceName": "POP3S",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 1025,
+          "serviceName": "Port 1025",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 1080,
+          "serviceName": "SOCKS Proxy",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 1241,
+          "serviceName": "Port 1241",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 1311,
+          "serviceName": "Port 1311",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 1433,
+          "serviceName": "MS SQL Server",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 1434,
+          "serviceName": "Port 1434",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 12,
+      "deviceIcon": "\uD83D\uDDC4\uFE0F",
+      "deviceColor": "#607D8B"
+    },
+    {
+      "ipAddress": "192.168.7.193",
+      "hostName": "host.docker.internal",
+      "macAddress": "88:AE:DD:16:57:72",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:18:55.1250133-08:00",
+      "firstDiscovered": "2026-01-17T14:41:03.2388396-08:00",
+      "discoveryCount": 9,
+      "responseTime": 194,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.154",
+      "hostName": "Unknown",
+      "macAddress": "3C:5C:F1:9A:46:DB",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:18:08.6496352-08:00",
+      "firstDiscovered": "2026-01-17T14:41:05.0927968-08:00",
+      "discoveryCount": 10,
+      "responseTime": 713,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 9,
+          "serviceName": "Port 9",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 37,
+          "serviceName": "Port 37",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 53,
+          "serviceName": "DNS",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.169",
+      "hostName": "Unknown",
+      "macAddress": "90:CA:FA:BD:5F:08",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:18:19.1448683-08:00",
+      "firstDiscovered": "2026-01-17T14:41:07.2073167-08:00",
+      "discoveryCount": 10,
+      "responseTime": 207,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.134",
+      "hostName": "Unknown",
+      "macAddress": "9A:67:F7:DC:71:DD",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:14:18.1840055-08:00",
+      "firstDiscovered": "2026-01-17T14:41:08.2790195-08:00",
+      "discoveryCount": 10,
+      "responseTime": 133,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.163",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:14:45.0858222-08:00",
+      "firstDiscovered": "2026-01-17T14:41:09.2476717-08:00",
+      "discoveryCount": 8,
+      "responseTime": 463,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.155",
+      "hostName": "Unknown",
+      "macAddress": "18:DE:50:33:86:D0",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:14:32.8025301-08:00",
+      "firstDiscovered": "2026-01-17T14:41:10.1202267-08:00",
+      "discoveryCount": 10,
+      "responseTime": 409,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "serviceName": "HTTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 110,
+          "serviceName": "POP3",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 111,
+          "serviceName": "RPC",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 465,
+          "serviceName": "SMTPS",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688"
+    },
+    {
+      "ipAddress": "192.168.7.192",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:10:10.7127607-08:00",
+      "firstDiscovered": "2026-01-17T14:41:11.3122639-08:00",
+      "discoveryCount": 7,
+      "responseTime": 533,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "serviceName": "HTTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 110,
+          "serviceName": "POP3",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 2,
+      "deviceIcon": "\uD83D\uDDA5\uFE0F",
+      "deviceColor": "#2196F3"
+    },
+    {
+      "ipAddress": "192.168.5.130",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:17:33.1077502-08:00",
+      "firstDiscovered": "2026-01-17T14:42:32.1938199-08:00",
+      "discoveryCount": 6,
+      "responseTime": 383,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 7,
+          "serviceName": "Port 7",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.5.181",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T16:53:19.2967924-08:00",
+      "firstDiscovered": "2026-01-17T14:42:34.3695827-08:00",
+      "discoveryCount": 6,
+      "responseTime": 193,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.6.226",
+      "hostName": "Unknown",
+      "macAddress": "40:CA:63:CF:88:05",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:17:48.6242877-08:00",
+      "firstDiscovered": "2026-01-17T14:42:44.5882727-08:00",
+      "discoveryCount": 6,
+      "responseTime": 184,
+      "openPorts": [
+        {
+          "port": 7,
+          "serviceName": "Port 7",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.229",
+      "hostName": "Unknown",
+      "macAddress": "3C:5C:F1:9A:95:DB",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:19:01.5005509-08:00",
+      "firstDiscovered": "2026-01-17T14:43:00.590716-08:00",
+      "discoveryCount": 5,
+      "responseTime": 574,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 7,
+          "serviceName": "Port 7",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 9,
+          "serviceName": "Port 9",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 11,
+          "serviceName": "Port 11",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 13,
+          "serviceName": "Port 13",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 15,
+          "serviceName": "Port 15",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 53,
+          "serviceName": "DNS",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.176",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T16:53:59.3145385-08:00",
+      "firstDiscovered": "2026-01-17T14:43:00.6045211-08:00",
+      "discoveryCount": 8,
+      "responseTime": 81,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.233",
+      "hostName": "Unknown",
+      "macAddress": "F0:21:E0:EE:13:4B",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:19:09.8867238-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.167689-08:00",
+      "discoveryCount": 5,
+      "responseTime": 677,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 7,
+          "serviceName": "Port 7",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 9,
+          "serviceName": "Port 9",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 11,
+          "serviceName": "Port 11",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 13,
+          "serviceName": "Port 13",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 53,
+          "serviceName": "DNS",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.252",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:11:04.9295108-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.1694781-08:00",
+      "discoveryCount": 5,
+      "responseTime": 257,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "serviceName": "HTTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 110,
+          "serviceName": "POP3",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 465,
+          "serviceName": "SMTPS",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688"
+    },
+    {
+      "ipAddress": "192.168.7.240",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:10:51.8340571-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.1726689-08:00",
+      "discoveryCount": 5,
+      "responseTime": 851,
+      "openPorts": [
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 135,
+          "serviceName": "MS RPC",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688"
+    },
+    {
+      "ipAddress": "192.168.7.205",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:10:22.9515335-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.1971484-08:00",
+      "discoveryCount": 5,
+      "responseTime": 46,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "serviceName": "HTTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688"
+    },
+    {
+      "ipAddress": "192.168.7.247",
+      "hostName": "Unknown",
+      "macAddress": "4C:FC:AA:9C:ED:DB",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:19:23.0416-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.9979594-08:00",
+      "discoveryCount": 5,
+      "responseTime": 610,
+      "openPorts": [
+        {
+          "port": 138,
+          "serviceName": "NetBIOS Datagram",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 139,
+          "serviceName": "NetBIOS Session",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.100.1",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:19:35.2157921-08:00",
+      "firstDiscovered": "2026-01-17T14:54:32.5946017-08:00",
+      "discoveryCount": 5,
+      "responseTime": 285,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 7,
+          "serviceName": "Port 7",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 9,
+          "serviceName": "Port 9",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 11,
+          "serviceName": "Port 11",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 13,
+          "serviceName": "Port 13",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 15,
+          "serviceName": "Port 15",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 17,
+          "serviceName": "Port 17",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 18,
+          "serviceName": "Port 18",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 37,
+          "serviceName": "Port 37",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 42,
+          "serviceName": "Port 42",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688"
+    },
+    {
+      "ipAddress": "192.168.144.1",
+      "hostName": "DESKTOP-9619J6O.mshome.net",
+      "macAddress": "00:15:5D:40:0B:8D",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:19:46.2752018-08:00",
+      "firstDiscovered": "2026-01-17T15:00:07.7749275-08:00",
+      "discoveryCount": 5,
+      "responseTime": 284,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.188",
+      "hostName": "Unknown",
+      "macAddress": "D8:A0:11:77:8D:D4",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:18:35.0746611-08:00",
+      "firstDiscovered": "2026-01-17T16:46:47.623135-08:00",
+      "discoveryCount": 6,
+      "responseTime": 131,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 7,
+          "serviceName": "Port 7",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 9,
+          "serviceName": "Port 9",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 11,
+          "serviceName": "Port 11",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 15,
+          "serviceName": "Port 15",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 17,
+          "serviceName": "Port 17",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.186",
+      "hostName": "Unknown",
+      "macAddress": "D0:73:D5:81:A9:CF",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:15:04.8522742-08:00",
+      "firstDiscovered": "2026-01-17T16:46:47.6245558-08:00",
+      "discoveryCount": 6,
+      "responseTime": 59,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.191",
+      "hostName": "Unknown",
+      "macAddress": "CC:40:85:44:FD:3C",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T18:18:42.0352175-08:00",
+      "firstDiscovered": "2026-01-17T16:46:47.6266777-08:00",
+      "discoveryCount": 5,
+      "responseTime": 564,
+      "openPorts": [
+        {
+          "port": 1,
+          "serviceName": "Port 1",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 11,
+          "serviceName": "Port 11",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 13,
+          "serviceName": "Port 13",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    },
+    {
+      "ipAddress": "192.168.7.180",
+      "hostName": "Unknown",
+      "macAddress": "D0:73:D5:81:AD:E1",
+      "isOnline": false,
+      "lastSeen": "2026-01-17T18:14:57.6309543-08:00",
+      "firstDiscovered": "2026-01-17T16:46:48.3444873-08:00",
+      "discoveryCount": 6,
+      "responseTime": 204,
+      "openPorts": [],
+      "deviceType": 0,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E"
+    }
+  ]
+}

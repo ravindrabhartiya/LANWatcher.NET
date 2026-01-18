@@ -19,15 +19,17 @@ public interface INetworkScanner
 public class NetworkScanner : INetworkScanner
 {
     private readonly ILogger<NetworkScanner> _logger;
+    private readonly IOuiLookupService _ouiLookup;
     private SemaphoreSlim _semaphore = null!;
     private ScanProgress _progress = new();
 
     public event EventHandler<ScanProgress>? OnProgressChanged;
     public event EventHandler<NetworkDevice>? OnDeviceFound;
 
-    public NetworkScanner(ILogger<NetworkScanner> logger)
+    public NetworkScanner(ILogger<NetworkScanner> logger, IOuiLookupService ouiLookup)
     {
         _logger = logger;
+        _ouiLookup = ouiLookup;
     }
 
     /// <summary>
@@ -242,6 +244,13 @@ public class NetworkScanner : INetworkScanner
                 device.IsOnline = true;
                 device.ResponseTime = (int)reply.RoundtripTime;
                 device.LastSeen = DateTime.Now;
+                device.Ttl = reply.Options?.Ttl ?? 0;
+
+                // OS Fingerprinting based on TTL
+                device.OperatingSystem = DetectOsFromTtl(device.Ttl);
+
+                // Track online history
+                device.OnlineHistory.Add(DateTime.Now);
 
                 // Try to resolve hostname
                 try
@@ -258,10 +267,27 @@ public class NetworkScanner : INetworkScanner
                 try
                 {
                     device.MacAddress = await GetMacAddressAsync(ipAddress);
+                    
+                    // Enrich with manufacturer and connection type from MAC OUI
+                    if (device.MacAddress != "Unknown")
+                    {
+                        device.Manufacturer = _ouiLookup.GetManufacturer(device.MacAddress);
+                        device.ConnectionType = _ouiLookup.GetAdapterType(device.MacAddress);
+                    }
                 }
                 catch
                 {
                     device.MacAddress = "Unknown";
+                }
+
+                // Try to get NetBIOS name
+                try
+                {
+                    device.NetBiosName = await GetNetBiosNameAsync(ipAddress, cancellationToken);
+                }
+                catch
+                {
+                    device.NetBiosName = string.Empty;
                 }
 
                 // Scan ports if enabled
@@ -279,6 +305,9 @@ public class NetworkScanner : INetworkScanner
 
                 // Detect device type
                 device.DeviceType = DetectDeviceType(device);
+
+                // Calculate risk level based on open ports
+                device.RiskLevel = CalculateRiskLevel(device);
             }
         }
         catch (Exception ex)
@@ -287,6 +316,102 @@ public class NetworkScanner : INetworkScanner
         }
 
         return device;
+    }
+
+    /// <summary>
+    /// Detects operating system based on TTL value from ping response
+    /// </summary>
+    private static string DetectOsFromTtl(int ttl)
+    {
+        // TTL values are decremented by each hop, so we look for common starting values
+        // Order matters: more specific ranges first
+        return ttl switch
+        {
+            >= 255 => "Cisco/Network",     // Cisco devices use 255
+            >= 128 => "Windows",           // Windows default TTL is 128
+            >= 64 => "Linux/Mac/iOS",      // Linux/Unix/Mac default TTL is 64
+            >= 32 => "Embedded",           // Some embedded devices use 32
+            > 0 => "Unknown",
+            _ => "Unknown"
+        };
+    }
+
+    /// <summary>
+    /// Calculates risk level based on open ports and device characteristics
+    /// </summary>
+    private static RiskLevel CalculateRiskLevel(NetworkDevice device)
+    {
+        var score = device.RiskScore;
+        
+        return score switch
+        {
+            >= 50 => RiskLevel.Critical,
+            >= 30 => RiskLevel.High,
+            >= 15 => RiskLevel.Medium,
+            >= 1 => RiskLevel.Low,
+            _ => RiskLevel.Unknown
+        };
+    }
+
+    /// <summary>
+    /// Attempts to get NetBIOS name via UDP port 137
+    /// </summary>
+    private async Task<string> GetNetBiosNameAsync(string ipAddress, CancellationToken cancellationToken)
+    {
+        try
+        {
+            using var udpClient = new UdpClient();
+            udpClient.Client.ReceiveTimeout = 500;
+            udpClient.Client.SendTimeout = 500;
+
+            var endpoint = new IPEndPoint(IPAddress.Parse(ipAddress), 137);
+
+            // NetBIOS Name Query packet
+            byte[] query = new byte[]
+            {
+                0x80, 0x94, // Transaction ID
+                0x00, 0x00, // Flags: query
+                0x00, 0x01, // Questions: 1
+                0x00, 0x00, // Answer RRs: 0
+                0x00, 0x00, // Authority RRs: 0
+                0x00, 0x00, // Additional RRs: 0
+                0x20,       // Name length
+                // Encoded "*" (wildcard) - CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                0x43, 0x4B, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
+                0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
+                0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
+                0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
+                0x00,       // Name terminator
+                0x00, 0x21, // Type: NBSTAT
+                0x00, 0x01  // Class: IN
+            };
+
+            await udpClient.SendAsync(query, query.Length, endpoint);
+
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cts.CancelAfter(500);
+
+            var result = await udpClient.ReceiveAsync(cts.Token);
+            
+            if (result.Buffer.Length > 57)
+            {
+                // Parse the response - NetBIOS name starts at byte 57
+                int nameCount = result.Buffer[56];
+                if (nameCount > 0 && result.Buffer.Length >= 57 + 18)
+                {
+                    var nameBytes = new byte[15];
+                    Array.Copy(result.Buffer, 57, nameBytes, 0, 15);
+                    var name = Encoding.ASCII.GetString(nameBytes).Trim();
+                    return name;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogDebug(ex, "Failed to get NetBIOS name for {IpAddress}", ipAddress);
+        }
+
+        return string.Empty;
     }
 
     /// <summary>

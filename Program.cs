@@ -8,6 +8,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 // Register network scanning services
+builder.Services.AddSingleton<IOuiLookupService, OuiLookupService>();
 builder.Services.AddSingleton<IDeviceRepository, DeviceRepository>();
 builder.Services.AddSingleton<INetworkScanner, NetworkScanner>();
 builder.Services.AddSingleton<IScanService, ScanService>();

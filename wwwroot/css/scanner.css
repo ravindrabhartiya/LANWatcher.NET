@@ -497,6 +497,25 @@ body {
     box-shadow: 0 0 0 2px var(--primary-color);
 }
 
+/* Risk level highlighting */
+.device-card.risk-critical {
+    border-right: 3px solid #D32F2F;
+    background: linear-gradient(90deg, var(--darker-bg) 0%, rgba(211, 47, 47, 0.1) 100%);
+}
+
+.device-card.risk-high {
+    border-right: 3px solid #F57C00;
+    background: linear-gradient(90deg, var(--darker-bg) 0%, rgba(245, 124, 0, 0.08) 100%);
+}
+
+.device-card.risk-medium {
+    border-right: 3px solid #FBC02D;
+}
+
+.device-card.risk-low {
+    border-right: 3px solid #388E3C;
+}
+
 .device-header {
     display: flex;
     align-items: center;
@@ -521,6 +540,12 @@ body {
 .device-hostname {
     font-size: 0.8rem;
     color: var(--text-secondary);
+}
+
+.device-netbios {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    margin-left: 0.25rem;
 }
 
 .device-status {
@@ -550,13 +575,109 @@ body {
     color: var(--text-secondary);
 }
 
+/* Device badges row */
+.device-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
 .device-type-badge {
     display: inline-block;
     padding: 0.25rem 0.6rem;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
+}
+
+.risk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* Device details section */
+.device-details {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 0.6rem;
     margin-bottom: 0.75rem;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    color: var(--text-secondary);
+    min-width: 70px;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: var(--text-primary);
+    font-family: monospace;
+}
+
+.detail-value.mac-address {
+    font-size: 0.75rem;
+}
+
+.detail-value.manufacturer {
+    color: var(--primary-color);
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.detail-value.os {
+    font-family: inherit;
+}
+
+.ttl-info {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-left: 0.25rem;
+}
+
+.detail-value.connection-type {
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.detail-value.connection-type.wifi {
+    color: #00BCD4;
+}
+
+.detail-value.connection-type.ethernet {
+    color: #4CAF50;
+}
+
+.detail-value.connection-type.virtual {
+    color: #9C27B0;
+}
+
+.detail-value.uptime-trend {
+    font-family: inherit;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .ports-section h5 {
@@ -581,9 +702,27 @@ body {
     font-size: 0.75rem;
 }
 
+.port-badge.port-high-risk {
+    background: rgba(211, 47, 47, 0.3);
+    border: 1px solid #D32F2F;
+}
+
+.port-badge.port-medium-risk {
+    background: rgba(245, 124, 0, 0.2);
+    border: 1px solid #F57C00;
+}
+
 .port-number {
     font-weight: 600;
     color: var(--primary-color);
+}
+
+.port-high-risk .port-number {
+    color: #F44336;
+}
+
+.port-medium-risk .port-number {
+    color: #FF9800;
 }
 
 .port-service {

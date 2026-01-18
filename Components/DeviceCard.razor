@@ -1,12 +1,16 @@
 @using LanWatcher.Models
 @using LanWatcher.Services
 
-<div class="device-card @(IsSelected ? "selected" : "")" style="border-left: 4px solid @Device.DeviceColor" @onclick="OnCardClick">
+<div class="device-card @(IsSelected ? "selected" : "") @GetRiskClass()" style="border-left: 4px solid @Device.DeviceColor" @onclick="OnCardClick">
     <div class="device-header">
         <span class="device-icon">@Device.DeviceIcon</span>
         <div class="device-info">
             <h4 class="device-ip">@Device.IpAddress</h4>
             <span class="device-hostname">@Device.HostName</span>
+            @if (!string.IsNullOrEmpty(Device.NetBiosName))
+            {
+                <span class="device-netbios" title="NetBIOS Name">(@Device.NetBiosName)</span>
+            }
         </div>
         <div class="device-status">
             <span class="status-indicator @(Device.IsOnline ? "online" : "offline")"></span>
@@ -14,8 +18,54 @@
         </div>
     </div>
     
-    <div class="device-type-badge" style="background-color: @Device.DeviceColor">
-        @Device.DeviceType
+    <div class="device-badges">
+        <div class="device-type-badge" style="background-color: @Device.DeviceColor">
+            @Device.DeviceType
+        </div>
+        @if (Device.RiskLevel != RiskLevel.Unknown)
+        {
+            <div class="risk-badge" style="background-color: @Device.RiskColor" title="Risk Score: @Device.RiskScore">
+                @Device.RiskIcon @Device.RiskLevel
+            </div>
+        }
+    </div>
+
+    <div class="device-details">
+        <div class="detail-row">
+            <span class="detail-label">MAC:</span>
+            <span class="detail-value mac-address">@Device.MacAddress</span>
+        </div>
+        @if (Device.Manufacturer != "Unknown")
+        {
+            <div class="detail-row">
+                <span class="detail-label">Vendor:</span>
+                <span class="detail-value manufacturer">@Device.Manufacturer</span>
+            </div>
+        }
+        @if (Device.OperatingSystem != "Unknown")
+        {
+            <div class="detail-row">
+                <span class="detail-label">OS:</span>
+                <span class="detail-value os">@Device.OperatingSystem</span>
+                @if (Device.Ttl > 0)
+                {
+                    <span class="ttl-info" title="TTL from ping response">(TTL: @Device.Ttl)</span>
+                }
+            </div>
+        }
+        @if (Device.ConnectionType != "Unknown")
+        {
+            <div class="detail-row">
+                <span class="detail-label">Connection:</span>
+                <span class="detail-value connection-type @Device.ConnectionType.ToLower()">
+                    @GetConnectionIcon() @Device.ConnectionType
+                </span>
+            </div>
+        }
+        <div class="detail-row">
+            <span class="detail-label">Uptime:</span>
+            <span class="detail-value uptime-trend">@Device.UptimeTrend</span>
+        </div>
     </div>
 
     @if (Device.OpenPorts.Any())
@@ -25,7 +75,7 @@
             <div class="ports-list">
                 @foreach (var port in Device.OpenPorts.Take(ShowAllPorts ? Device.OpenPorts.Count : 5))
                 {
-                    <div class="port-badge" title="@port.ServiceName">
+                    <div class="port-badge @GetPortRiskClass(port.Port)" title="@port.ServiceName">
                         <span class="port-number">@port.Port</span>
                         <span class="port-service">@port.ServiceName</span>
                         @if (!string.IsNullOrEmpty(port.Banner))
@@ -68,5 +118,39 @@
     private void ToggleShowAllPorts()
     {
         ShowAllPorts = !ShowAllPorts;
+    }
+
+    private string GetRiskClass()
+    {
+        return Device.RiskLevel switch
+        {
+            RiskLevel.Critical => "risk-critical",
+            RiskLevel.High => "risk-high",
+            RiskLevel.Medium => "risk-medium",
+            RiskLevel.Low => "risk-low",
+            _ => ""
+        };
+    }
+
+    private string GetConnectionIcon()
+    {
+        return Device.ConnectionType switch
+        {
+            "WiFi" => "📶",
+            "Ethernet" => "🔌",
+            "Virtual" => "💻",
+            _ => "❓"
+        };
+    }
+
+    private string GetPortRiskClass(int port)
+    {
+        // High risk ports
+        var highRisk = new[] { 23, 21, 3389, 5900, 5901, 445, 139, 135 };
+        var mediumRisk = new[] { 22, 1433, 3306, 5432, 27017, 8080 };
+        
+        if (highRisk.Contains(port)) return "port-high-risk";
+        if (mediumRisk.Contains(port)) return "port-medium-risk";
+        return "";
     }
 }
