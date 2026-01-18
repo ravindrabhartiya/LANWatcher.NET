@@ -14,6 +14,9 @@ A powerful network device discovery and port scanning tool built with **Blazor**
 - **📊 Interactive Dashboard** - Real-time statistics and progress tracking
 - **🗺️ Multiple Views** - Grid, List, and Topology network map views
 - **⚠️ Risk Detection** - Highlights devices with potentially risky open ports
+- **🔄 Auto-Refresh** - Background service refreshes known devices every 30 seconds
+- **💾 Persistent Storage** - Discovered devices saved to JSON and restored on startup
+- **�icing Vendor Detection** - MAC address OUI lookup for device manufacturer identification
 
 ## 📷 Screenshots
 
@@ -83,21 +86,23 @@ dotnet run
 ```
 LanWatcher.NET/
 ├── Models/
-│   ├── NetworkDevice.cs      # Device model with type detection
-│   └── ScanProgress.cs       # Progress tracking & scan options
+│   ├── NetworkDevice.cs        # Device model with type detection
+│   └── ScanProgress.cs         # Progress tracking & scan options
 ├── Services/
-│   ├── NetworkScanner.cs     # Core scanning using Ping & TcpClient
-│   ├── DeviceRepository.cs   # In-memory device storage
-│   ├── ScanService.cs        # Orchestrates scanning operations
-│   └── PortDefinitions.cs    # Port-to-service mappings
+│   ├── NetworkScanner.cs       # Core scanning using Ping & TcpClient
+│   ├── DeviceRepository.cs     # Persistent device storage (JSON)
+│   ├── DeviceRefreshService.cs # Background refresh every 30 seconds
+│   ├── ScanService.cs          # Orchestrates scanning operations
+│   ├── OuiLookupService.cs     # MAC address vendor lookup
+│   └── PortDefinitions.cs      # Port-to-service mappings
 ├── Components/
-│   ├── DeviceCard.razor      # Individual device display
-│   ├── NetworkMap.razor      # Grid/List/Topology views
-│   ├── ProgressPanel.razor   # Scan progress display
-│   ├── ScanControls.razor    # Scan configuration UI
-│   └── StatsDashboard.razor  # Summary statistics
+│   ├── DeviceCard.razor        # Individual device display
+│   ├── NetworkMap.razor        # Grid/List/Topology views
+│   ├── ProgressPanel.razor     # Scan progress display
+│   ├── ScanControls.razor      # Scan configuration UI
+│   └── StatsDashboard.razor    # Summary statistics
 └── wwwroot/css/
-    └── scanner.css           # Dark theme styling
+    └── scanner.css             # Dark theme styling
 ```
 
 ## ⚡ Performance
@@ -107,6 +112,8 @@ LanWatcher.NET leverages C#'s async/await pattern with `Task.WhenAll` to achieve
 - **Parallel IP Scanning**: Configurable 10-100 concurrent connections
 - **Efficient Port Scanning**: Non-blocking TCP connection attempts
 - **Memory Efficient**: Uses semaphores to limit resource usage
+- **Background Refresh**: Keeps device status up-to-date every 30 seconds
+- **Debounced Persistence**: Saves to disk without blocking the UI
 
 ## 🔒 Security Considerations
 
