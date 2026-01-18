@@ -252,16 +252,8 @@ public class NetworkScanner : INetworkScanner
                 // Track online history
                 device.OnlineHistory.Add(DateTime.Now);
 
-                // Try to resolve hostname
-                try
-                {
-                    var hostEntry = await Dns.GetHostEntryAsync(ipAddress);
-                    device.HostName = hostEntry.HostName;
-                }
-                catch
-                {
-                    device.HostName = "Unknown";
-                }
+                // Try to resolve hostname using multiple methods
+                device.HostName = await ResolveHostnameAsync(ipAddress, cancellationToken);
 
                 // Try to get MAC address from ARP table
                 try
@@ -280,14 +272,17 @@ public class NetworkScanner : INetworkScanner
                     device.MacAddress = "Unknown";
                 }
 
-                // Try to get NetBIOS name
-                try
+                // Try to get NetBIOS name (may already be set if used as hostname fallback)
+                if (string.IsNullOrEmpty(device.NetBiosName))
                 {
-                    device.NetBiosName = await GetNetBiosNameAsync(ipAddress, cancellationToken);
-                }
-                catch
-                {
-                    device.NetBiosName = string.Empty;
+                    try
+                    {
+                        device.NetBiosName = await GetNetBiosNameAsync(ipAddress, cancellationToken);
+                    }
+                    catch
+                    {
+                        device.NetBiosName = string.Empty;
+                    }
                 }
 
                 // Scan ports if enabled
@@ -412,6 +407,268 @@ public class NetworkScanner : INetworkScanner
         }
 
         return string.Empty;
+    }
+
+    /// <summary>
+    /// Resolves hostname using multiple methods with fallbacks:
+    /// 1. Reverse DNS lookup (works for domain-joined devices)
+    /// 2. NetBIOS name (works for Windows devices)
+    /// 3. mDNS/Bonjour (works for Apple/Linux devices with .local names)
+    /// </summary>
+    private async Task<string> ResolveHostnameAsync(string ipAddress, CancellationToken cancellationToken)
+    {
+        // Method 1: Reverse DNS lookup
+        try
+        {
+            var hostEntry = await Dns.GetHostEntryAsync(ipAddress);
+            if (!string.IsNullOrWhiteSpace(hostEntry.HostName) && 
+                hostEntry.HostName != ipAddress)
+            {
+                return hostEntry.HostName;
+            }
+        }
+        catch
+        {
+            // DNS lookup failed, try other methods
+        }
+
+        // Method 2: NetBIOS name (Windows devices)
+        try
+        {
+            var netBiosName = await GetNetBiosNameAsync(ipAddress, cancellationToken);
+            if (!string.IsNullOrWhiteSpace(netBiosName))
+            {
+                return netBiosName;
+            }
+        }
+        catch
+        {
+            // NetBIOS lookup failed
+        }
+
+        // Method 3: mDNS/Bonjour lookup (Apple/Linux devices with .local names)
+        try
+        {
+            var mdnsName = await GetMdnsNameAsync(ipAddress, cancellationToken);
+            if (!string.IsNullOrWhiteSpace(mdnsName))
+            {
+                return mdnsName;
+            }
+        }
+        catch
+        {
+            // mDNS lookup failed
+        }
+
+        return "Unknown";
+    }
+
+    /// <summary>
+    /// Attempts to resolve hostname via mDNS (Multicast DNS) for .local devices
+    /// This works for Apple devices, Linux with Avahi, and some IoT devices
+    /// </summary>
+    private async Task<string> GetMdnsNameAsync(string ipAddress, CancellationToken cancellationToken)
+    {
+        try
+        {
+            // Construct the reverse lookup name for mDNS
+            // For IP 192.168.1.100, query for 100.1.168.192.in-addr.arpa
+            var parts = ipAddress.Split('.');
+            if (parts.Length != 4)
+                return string.Empty;
+
+            Array.Reverse(parts);
+            var reverseName = $"{string.Join(".", parts)}.in-addr.arpa";
+
+            using var udpClient = new UdpClient();
+            udpClient.Client.ReceiveTimeout = 1000;
+            udpClient.Client.SendTimeout = 500;
+            
+            // mDNS uses multicast address 224.0.0.251 on port 5353
+            var mdnsEndpoint = new IPEndPoint(IPAddress.Parse("224.0.0.251"), 5353);
+
+            // Build a simple DNS PTR query
+            var query = BuildDnsPtrQuery(reverseName);
+            
+            await udpClient.SendAsync(query, query.Length, mdnsEndpoint);
+
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cts.CancelAfter(1000);
+
+            var result = await udpClient.ReceiveAsync(cts.Token);
+            
+            if (result.Buffer.Length > 12)
+            {
+                // Parse DNS response to extract hostname
+                var hostname = ParseDnsPtrResponse(result.Buffer);
+                if (!string.IsNullOrWhiteSpace(hostname))
+                {
+                    return hostname;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogDebug(ex, "mDNS lookup failed for {IpAddress}", ipAddress);
+        }
+
+        return string.Empty;
+    }
+
+    /// <summary>
+    /// Builds a DNS PTR query packet
+    /// </summary>
+    private static byte[] BuildDnsPtrQuery(string name)
+    {
+        var query = new List<byte>();
+        
+        // Header
+        query.AddRange(new byte[]
+        {
+            0x00, 0x00, // Transaction ID
+            0x00, 0x00, // Flags: standard query
+            0x00, 0x01, // Questions: 1
+            0x00, 0x00, // Answer RRs: 0
+            0x00, 0x00, // Authority RRs: 0
+            0x00, 0x00  // Additional RRs: 0
+        });
+
+        // Query name (encoded)
+        foreach (var part in name.Split('.'))
+        {
+            query.Add((byte)part.Length);
+            query.AddRange(Encoding.ASCII.GetBytes(part));
+        }
+        query.Add(0x00); // Name terminator
+
+        // Query type and class
+        query.AddRange(new byte[]
+        {
+            0x00, 0x0C, // Type: PTR
+            0x00, 0x01  // Class: IN
+        });
+
+        return query.ToArray();
+    }
+
+    /// <summary>
+    /// Parses a DNS response to extract the PTR hostname
+    /// </summary>
+    private static string ParseDnsPtrResponse(byte[] response)
+    {
+        try
+        {
+            if (response.Length < 12)
+                return string.Empty;
+
+            // Check if we have answers
+            int answerCount = (response[6] << 8) | response[7];
+            if (answerCount == 0)
+                return string.Empty;
+
+            // Skip header (12 bytes) and question section
+            int offset = 12;
+            
+            // Skip question name
+            while (offset < response.Length && response[offset] != 0)
+            {
+                if ((response[offset] & 0xC0) == 0xC0)
+                {
+                    offset += 2; // Compression pointer
+                    break;
+                }
+                offset += response[offset] + 1;
+            }
+            if (offset < response.Length && response[offset] == 0)
+                offset++; // Skip null terminator
+
+            // Skip question type and class (4 bytes)
+            offset += 4;
+
+            if (offset >= response.Length)
+                return string.Empty;
+
+            // Now we're at the answer section
+            // Skip answer name (may be compressed)
+            if ((response[offset] & 0xC0) == 0xC0)
+            {
+                offset += 2;
+            }
+            else
+            {
+                while (offset < response.Length && response[offset] != 0)
+                    offset += response[offset] + 1;
+                offset++;
+            }
+
+            // Skip type (2), class (2), TTL (4), RDLENGTH (2) = 10 bytes
+            offset += 10;
+
+            if (offset >= response.Length)
+                return string.Empty;
+
+            // Parse the PTR data (domain name)
+            var hostname = new StringBuilder();
+            while (offset < response.Length && response[offset] != 0)
+            {
+                if ((response[offset] & 0xC0) == 0xC0)
+                {
+                    // Compression pointer - follow it
+                    int pointer = ((response[offset] & 0x3F) << 8) | response[offset + 1];
+                    return ParseDnsName(response, pointer);
+                }
+
+                int len = response[offset++];
+                if (hostname.Length > 0)
+                    hostname.Append('.');
+                
+                if (offset + len > response.Length)
+                    break;
+
+                hostname.Append(Encoding.ASCII.GetString(response, offset, len));
+                offset += len;
+            }
+
+            return hostname.ToString();
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    }
+
+    /// <summary>
+    /// Parses a DNS name from a response buffer at the given offset
+    /// </summary>
+    private static string ParseDnsName(byte[] response, int offset)
+    {
+        var name = new StringBuilder();
+        int maxIterations = 100; // Prevent infinite loops
+        
+        while (offset < response.Length && response[offset] != 0 && maxIterations-- > 0)
+        {
+            if ((response[offset] & 0xC0) == 0xC0)
+            {
+                // Compression pointer
+                int pointer = ((response[offset] & 0x3F) << 8) | response[offset + 1];
+                if (name.Length > 0)
+                    name.Append('.');
+                name.Append(ParseDnsName(response, pointer));
+                break;
+            }
+
+            int len = response[offset++];
+            if (name.Length > 0)
+                name.Append('.');
+            
+            if (offset + len > response.Length)
+                break;
+
+            name.Append(Encoding.ASCII.GetString(response, offset, len));
+            offset += len;
+        }
+
+        return name.ToString();
     }
 
     /// <summary>

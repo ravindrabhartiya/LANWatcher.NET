@@ -1,88 +1,26 @@
 {
-  "lastUpdated": "2026-01-17T19:38:09.2886935-08:00",
+  "lastUpdated": "2026-01-17T19:43:59.635679-08:00",
   "devices": [
     {
       "ipAddress": "192.168.4.24",
       "hostName": "Unknown",
-      "macAddress": "4C:C9:5E:0D:26:28",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:17:07.6571674-08:00",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:40:10.7117428-08:00",
       "firstDiscovered": "2026-01-17T11:06:01.8646837-08:00",
-      "discoveryCount": 10,
-      "responseTime": 411,
-      "openPorts": [
-        {
-          "port": 1,
-          "serviceName": "Port 1",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 7,
-          "serviceName": "Port 7",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 9,
-          "serviceName": "Port 9",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 13,
-          "serviceName": "Port 13",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 15,
-          "serviceName": "Port 15",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 17,
-          "serviceName": "Port 17",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 18,
-          "serviceName": "Port 18",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 19,
-          "serviceName": "Port 19",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        }
-      ],
+      "discoveryCount": 11,
+      "responseTime": 39,
+      "openPorts": [],
       "deviceType": 0,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
       "netBiosName": "",
       "connectionType": "Unknown",
       "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
+      "onlineHistory": [
+        "2026-01-17T19:40:10.7117487-08:00"
+      ],
+      "ttl": 64,
       "deviceIcon": "\u2753",
       "deviceColor": "#9E9E9E",
       "riskIcon": "\u26AA",
@@ -93,226 +31,19 @@
     {
       "ipAddress": "192.168.4.51",
       "hostName": "HP356321",
-      "macAddress": "DC:4A:3E:35:63:21",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:17:19.6392963-08:00",
-      "firstDiscovered": "2026-01-17T11:06:01.9617726-08:00",
-      "discoveryCount": 10,
-      "responseTime": 188,
-      "openPorts": [],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.4.1",
-      "hostName": "lnldftloran1a4-Vl4081.network.microsoft.com",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:36:03.0109934-08:00",
-      "firstDiscovered": "2026-01-17T11:06:01.9634272-08:00",
-      "discoveryCount": 10,
-      "responseTime": 44,
+      "lastSeen": "2026-01-17T19:40:12.9453248-08:00",
+      "firstDiscovered": "2026-01-17T11:06:01.9617726-08:00",
+      "discoveryCount": 11,
+      "responseTime": 124,
       "openPorts": [
         {
-          "port": 110,
-          "serviceName": "POP3",
+          "port": 80,
+          "serviceName": "HTTP",
           "protocol": "TCP",
           "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 111,
-          "serviceName": "RPC",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 113,
-          "serviceName": "Port 113",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 119,
-          "serviceName": "Port 119",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 123,
-          "serviceName": "NTP",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 135,
-          "serviceName": "MS RPC",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 137,
-          "serviceName": "NetBIOS Name",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 138,
-          "serviceName": "NetBIOS Datagram",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 139,
-          "serviceName": "NetBIOS Session",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 143,
-          "serviceName": "IMAP",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 144,
-          "serviceName": "Port 144",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 161,
-          "serviceName": "SNMP",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 162,
-          "serviceName": "Port 162",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 175,
-          "serviceName": "Port 175",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 179,
-          "serviceName": "Port 179",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 199,
-          "serviceName": "Port 199",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 211,
-          "serviceName": "Port 211",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 212,
-          "serviceName": "Port 212",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 222,
-          "serviceName": "Port 222",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 255,
-          "serviceName": "Port 255",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 256,
-          "serviceName": "Port 256",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 259,
-          "serviceName": "Port 259",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 264,
-          "serviceName": "Port 264",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 280,
-          "serviceName": "Port 280",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 311,
-          "serviceName": "Port 311",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 389,
-          "serviceName": "LDAP",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 407,
-          "serviceName": "Port 407",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
+          "banner": "HP HTTP Server; HP ENVY 4520 series - F0V69A; Serial Number: TH5AK3G08M0660; Built:Tue Jun 02, 2020 09:20:56AM {CFP1FN2023BR}"
         },
         {
           "port": 443,
@@ -320,333 +51,99 @@
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
-        },
-        {
-          "port": 444,
-          "serviceName": "Port 444",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 445,
-          "serviceName": "SMB/CIFS",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 458,
-          "serviceName": "Port 458",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 465,
-          "serviceName": "SMTPS",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 500,
-          "serviceName": "Port 500",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 512,
-          "serviceName": "Port 512",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 513,
-          "serviceName": "Port 513",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 514,
-          "serviceName": "Syslog",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 515,
-          "serviceName": "LPD Printing",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 520,
-          "serviceName": "Port 520",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 524,
-          "serviceName": "Port 524",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 541,
-          "serviceName": "Port 541",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 543,
-          "serviceName": "Port 543",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
         }
       ],
-      "deviceType": 3,
+      "deviceType": 2,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Cisco/Network",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 1,
+      "onlineHistory": [
+        "2026-01-17T19:40:12.9453285-08:00"
+      ],
+      "ttl": 255,
+      "deviceIcon": "\uD83D\uDDA5\uFE0F",
+      "deviceColor": "#2196F3",
+      "riskIcon": "\uD83D\uDFE2",
+      "riskColor": "#388E3C",
+      "uptimeTrend": "New",
+      "riskScore": 4
+    },
+    {
+      "ipAddress": "192.168.4.1",
+      "hostName": "lnldftloran1a4-Vl4081.network.microsoft.com",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:40:08.4873392-08:00",
+      "firstDiscovered": "2026-01-17T11:06:01.9634272-08:00",
+      "discoveryCount": 11,
+      "responseTime": 40,
+      "openPorts": [],
+      "deviceType": 0,
       "manufacturer": "Unknown",
       "operatingSystem": "Linux/Mac/iOS",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 3,
+      "riskLevel": 0,
       "onlineHistory": [
-        "2026-01-17T19:36:03.0111474-08:00"
+        "2026-01-17T19:40:08.4874092-08:00"
       ],
       "ttl": 64,
-      "deviceIcon": "\uD83D\uDDA8\uFE0F",
-      "deviceColor": "#9C27B0",
-      "riskIcon": "\uD83D\uDFE0",
-      "riskColor": "#F57C00",
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E",
+      "riskIcon": "\u26AA",
+      "riskColor": "#9E9E9E",
       "uptimeTrend": "New",
-      "riskScore": 36
+      "riskScore": 0
     },
     {
       "ipAddress": "192.168.7.193",
       "hostName": "host.docker.internal",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:37:18.0472705-08:00",
+      "lastSeen": "2026-01-17T19:42:50.8071751-08:00",
       "firstDiscovered": "2026-01-17T14:41:03.2388396-08:00",
-      "discoveryCount": 10,
-      "responseTime": 256,
-      "openPorts": [
-        {
-          "port": 135,
-          "serviceName": "MS RPC",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 139,
-          "serviceName": "NetBIOS Session",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 445,
-          "serviceName": "SMB/CIFS",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        }
-      ],
-      "deviceType": 5,
+      "discoveryCount": 11,
+      "responseTime": 30,
+      "openPorts": [],
+      "deviceType": 0,
       "manufacturer": "Unknown",
       "operatingSystem": "Windows",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 3,
+      "riskLevel": 0,
       "onlineHistory": [
-        "2026-01-17T19:37:18.0472752-08:00"
+        "2026-01-17T19:42:50.8071791-08:00"
       ],
       "ttl": 128,
-      "deviceIcon": "\uD83D\uDCC1",
-      "deviceColor": "#FF9800",
-      "riskIcon": "\uD83D\uDFE0",
-      "riskColor": "#F57C00",
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E",
+      "riskIcon": "\u26AA",
+      "riskColor": "#9E9E9E",
       "uptimeTrend": "New",
-      "riskScore": 35
+      "riskScore": 0
     },
     {
       "ipAddress": "192.168.7.154",
       "hostName": "Unknown",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:36:35.428805-08:00",
+      "lastSeen": "2026-01-17T19:41:05.008953-08:00",
       "firstDiscovered": "2026-01-17T14:41:05.0927968-08:00",
-      "discoveryCount": 11,
-      "responseTime": 151,
-      "openPorts": [
-        {
-          "port": 1,
-          "serviceName": "Port 1",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 7,
-          "serviceName": "Port 7",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 9,
-          "serviceName": "Port 9",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 53,
-          "serviceName": "DNS",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        }
-      ],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Linux/Mac/iOS",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [
-        "2026-01-17T19:36:35.4288073-08:00"
-      ],
-      "ttl": 64,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.169",
-      "hostName": "Unknown",
-      "macAddress": "Unknown",
-      "isOnline": true,
-      "lastSeen": "2026-01-17T19:36:49.459199-08:00",
-      "firstDiscovered": "2026-01-17T14:41:07.2073167-08:00",
-      "discoveryCount": 11,
-      "responseTime": 177,
-      "openPorts": [
-        {
-          "port": 7,
-          "serviceName": "Port 7",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        }
-      ],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Linux/Mac/iOS",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [
-        "2026-01-17T19:36:49.459203-08:00"
-      ],
-      "ttl": 64,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.134",
-      "hostName": "Unknown",
-      "macAddress": "9A:67:F7:DC:71:DD",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:14:18.1840055-08:00",
-      "firstDiscovered": "2026-01-17T14:41:08.2790195-08:00",
-      "discoveryCount": 11,
-      "responseTime": 133,
-      "openPorts": [],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.163",
-      "hostName": "Unknown",
-      "macAddress": "Unknown",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:14:45.0858222-08:00",
-      "firstDiscovered": "2026-01-17T14:41:09.2476717-08:00",
-      "discoveryCount": 9,
-      "responseTime": 463,
-      "openPorts": [],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.155",
-      "hostName": "Unknown",
-      "macAddress": "18:DE:50:33:86:D0",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:14:32.8025301-08:00",
-      "firstDiscovered": "2026-01-17T14:41:10.1202267-08:00",
-      "discoveryCount": 11,
-      "responseTime": 409,
+      "discoveryCount": 12,
+      "responseTime": 32,
       "openPorts": [
         {
           "port": 20,
           "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
@@ -666,6 +163,236 @@
           "banner": ""
         },
         {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 53,
+          "serviceName": "DNS",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:41:05.0089574-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
+      "uptimeTrend": "New",
+      "riskScore": 60
+    },
+    {
+      "ipAddress": "192.168.7.169",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:41:41.3939134-08:00",
+      "firstDiscovered": "2026-01-17T14:41:07.2073167-08:00",
+      "discoveryCount": 12,
+      "responseTime": 118,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:41:41.3939166-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
+      "uptimeTrend": "New",
+      "riskScore": 60
+    },
+    {
+      "ipAddress": "192.168.7.134",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:40:56.020819-08:00",
+      "firstDiscovered": "2026-01-17T14:41:08.2790195-08:00",
+      "discoveryCount": 12,
+      "responseTime": 377,
+      "openPorts": [],
+      "deviceType": 0,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 0,
+      "onlineHistory": [
+        "2026-01-17T19:40:56.020823-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E",
+      "riskIcon": "\u26AA",
+      "riskColor": "#9E9E9E",
+      "uptimeTrend": "New",
+      "riskScore": 0
+    },
+    {
+      "ipAddress": "192.168.7.163",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:41:29.067004-08:00",
+      "firstDiscovered": "2026-01-17T14:41:09.2476717-08:00",
+      "discoveryCount": 10,
+      "responseTime": 510,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "serviceName": "HTTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 3,
+      "onlineHistory": [
+        "2026-01-17T19:41:29.0670077-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDFE0",
+      "riskColor": "#F57C00",
+      "uptimeTrend": "New",
+      "riskScore": 33
+    },
+    {
+      "ipAddress": "192.168.7.155",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:41:16.0567176-08:00",
+      "firstDiscovered": "2026-01-17T14:41:10.1202267-08:00",
+      "discoveryCount": 12,
+      "responseTime": 140,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
           "port": 80,
           "serviceName": "HTTP",
           "protocol": "TCP",
@@ -680,15 +407,15 @@
           "banner": ""
         },
         {
-          "port": 111,
-          "serviceName": "RPC",
+          "port": 139,
+          "serviceName": "NetBIOS Session",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 465,
-          "serviceName": "SMTPS",
+          "port": 143,
+          "serviceName": "IMAP",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
@@ -696,18 +423,20 @@
       ],
       "deviceType": 13,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Cisco/Network",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:41:16.0567218-08:00"
+      ],
+      "ttl": 255,
       "deviceIcon": "\uD83D\uDCE7",
       "deviceColor": "#009688",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
       "uptimeTrend": "New",
-      "riskScore": 43
+      "riskScore": 73
     },
     {
       "ipAddress": "192.168.7.192",
@@ -716,7 +445,7 @@
       "isOnline": false,
       "lastSeen": "2026-01-17T18:10:10.7127607-08:00",
       "firstDiscovered": "2026-01-17T14:41:11.3122639-08:00",
-      "discoveryCount": 8,
+      "discoveryCount": 9,
       "responseTime": 533,
       "openPorts": [
         {
@@ -782,85 +511,130 @@
       "hostName": "Unknown",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:36:13.1343286-08:00",
+      "lastSeen": "2026-01-17T19:40:24.380295-08:00",
       "firstDiscovered": "2026-01-17T14:42:32.1938199-08:00",
-      "discoveryCount": 7,
-      "responseTime": 326,
-      "openPorts": [],
-      "deviceType": 0,
+      "discoveryCount": 8,
+      "responseTime": 375,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
       "manufacturer": "Unknown",
       "operatingSystem": "Windows",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
+      "riskLevel": 4,
       "onlineHistory": [
-        "2026-01-17T19:36:13.1343326-08:00"
+        "2026-01-17T19:40:24.3802996-08:00"
       ],
       "ttl": 128,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
       "uptimeTrend": "New",
-      "riskScore": 0
+      "riskScore": 60
     },
     {
       "ipAddress": "192.168.5.181",
       "hostName": "Unknown",
       "macAddress": "Unknown",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T16:53:19.2967924-08:00",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:40:36.8387517-08:00",
       "firstDiscovered": "2026-01-17T14:42:34.3695827-08:00",
-      "discoveryCount": 7,
-      "responseTime": 193,
-      "openPorts": [],
-      "deviceType": 0,
+      "discoveryCount": 8,
+      "responseTime": 375,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "riskLevel": 3,
+      "onlineHistory": [
+        "2026-01-17T19:40:36.8387547-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDFE0",
+      "riskColor": "#F57C00",
       "uptimeTrend": "New",
-      "riskScore": 0
+      "riskScore": 30
     },
     {
       "ipAddress": "192.168.6.226",
       "hostName": "Unknown",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:36:21.3607268-08:00",
+      "lastSeen": "2026-01-17T19:40:48.5141487-08:00",
       "firstDiscovered": "2026-01-17T14:42:44.5882727-08:00",
-      "discoveryCount": 7,
-      "responseTime": 83,
-      "openPorts": [
-        {
-          "port": 1,
-          "serviceName": "Port 1",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 7,
-          "serviceName": "Port 7",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 9,
-          "serviceName": "Port 9",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        }
-      ],
+      "discoveryCount": 8,
+      "responseTime": 260,
+      "openPorts": [],
       "deviceType": 0,
       "manufacturer": "Unknown",
       "operatingSystem": "Cisco/Network",
@@ -868,7 +642,7 @@
       "connectionType": "Unknown",
       "riskLevel": 0,
       "onlineHistory": [
-        "2026-01-17T19:36:21.3607298-08:00"
+        "2026-01-17T19:40:48.5141531-08:00"
       ],
       "ttl": 255,
       "deviceIcon": "\u2753",
@@ -883,116 +657,42 @@
       "hostName": "Unknown",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:37:27.7802818-08:00",
+      "lastSeen": "2026-01-17T19:43:03.8037893-08:00",
       "firstDiscovered": "2026-01-17T14:43:00.590716-08:00",
-      "discoveryCount": 6,
-      "responseTime": 997,
+      "discoveryCount": 7,
+      "responseTime": 65,
       "openPorts": [
         {
-          "port": 1,
-          "serviceName": "Port 1",
+          "port": 20,
+          "serviceName": "FTP Data",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 7,
-          "serviceName": "Port 7",
+          "port": 21,
+          "serviceName": "FTP Control",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        }
-      ],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Linux/Mac/iOS",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [
-        "2026-01-17T19:37:27.7802855-08:00"
-      ],
-      "ttl": 64,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.176",
-      "hostName": "Unknown",
-      "macAddress": "Unknown",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T16:53:59.3145385-08:00",
-      "firstDiscovered": "2026-01-17T14:43:00.6045211-08:00",
-      "discoveryCount": 9,
-      "responseTime": 81,
-      "openPorts": [],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.233",
-      "hostName": "Unknown",
-      "macAddress": "F0:21:E0:EE:13:4B",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:19:09.8867238-08:00",
-      "firstDiscovered": "2026-01-17T14:43:05.167689-08:00",
-      "discoveryCount": 6,
-      "responseTime": 677,
-      "openPorts": [
-        {
-          "port": 1,
-          "serviceName": "Port 1",
+          "port": 22,
+          "serviceName": "SSH",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 7,
-          "serviceName": "Port 7",
+          "port": 23,
+          "serviceName": "Telnet",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 9,
-          "serviceName": "Port 9",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 13,
-          "serviceName": "Port 13",
+          "port": 25,
+          "serviceName": "SMTP",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
@@ -1003,129 +703,41 @@
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
-        }
-      ],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.252",
-      "hostName": "Unknown",
-      "macAddress": "Unknown",
-      "isOnline": true,
-      "lastSeen": "2026-01-17T19:37:58.4343693-08:00",
-      "firstDiscovered": "2026-01-17T14:43:05.1694781-08:00",
-      "discoveryCount": 6,
-      "responseTime": 636,
-      "openPorts": [
-        {
-          "port": 1,
-          "serviceName": "Port 1",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
         },
         {
-          "port": 9,
-          "serviceName": "Port 9",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 13,
-          "serviceName": "Port 13",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 15,
-          "serviceName": "Port 15",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 19,
-          "serviceName": "Port 19",
+          "port": 110,
+          "serviceName": "POP3",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         }
       ],
-      "deviceType": 0,
+      "deviceType": 13,
       "manufacturer": "Unknown",
-      "operatingSystem": "Windows",
+      "operatingSystem": "Linux/Mac/iOS",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
+      "riskLevel": 4,
       "onlineHistory": [
-        "2026-01-17T19:37:58.4343743-08:00"
+        "2026-01-17T19:43:03.8037938-08:00"
       ],
-      "ttl": 128,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
       "uptimeTrend": "New",
-      "riskScore": 0
+      "riskScore": 60
     },
     {
-      "ipAddress": "192.168.7.240",
+      "ipAddress": "192.168.7.176",
       "hostName": "Unknown",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:37:40.6151093-08:00",
-      "firstDiscovered": "2026-01-17T14:43:05.1726689-08:00",
-      "discoveryCount": 6,
-      "responseTime": 835,
-      "openPorts": [],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Cisco/Network",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [
-        "2026-01-17T19:37:40.6151123-08:00"
-      ],
-      "ttl": 255,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.205",
-      "hostName": "Unknown",
-      "macAddress": "Unknown",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:10:22.9515335-08:00",
-      "firstDiscovered": "2026-01-17T14:43:05.1971484-08:00",
-      "discoveryCount": 6,
-      "responseTime": 46,
+      "lastSeen": "2026-01-17T19:41:52.7173429-08:00",
+      "firstDiscovered": "2026-01-17T14:43:00.6045211-08:00",
+      "discoveryCount": 10,
+      "responseTime": 188,
       "openPorts": [
         {
           "port": 20,
@@ -1172,121 +784,34 @@
       ],
       "deviceType": 13,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:41:52.7173468-08:00"
+      ],
+      "ttl": 64,
       "deviceIcon": "\uD83D\uDCE7",
       "deviceColor": "#009688",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
       "uptimeTrend": "New",
       "riskScore": 63
     },
     {
-      "ipAddress": "192.168.7.247",
-      "hostName": "Unknown",
-      "macAddress": "4C:FC:AA:9C:ED:DB",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:19:23.0416-08:00",
-      "firstDiscovered": "2026-01-17T14:43:05.9979594-08:00",
-      "discoveryCount": 6,
-      "responseTime": 610,
-      "openPorts": [
-        {
-          "port": 138,
-          "serviceName": "NetBIOS Datagram",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 139,
-          "serviceName": "NetBIOS Session",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        }
-      ],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 10
-    },
-    {
-      "ipAddress": "192.168.100.1",
+      "ipAddress": "192.168.7.233",
       "hostName": "Unknown",
       "macAddress": "Unknown",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:19:35.2157921-08:00",
-      "firstDiscovered": "2026-01-17T14:54:32.5946017-08:00",
-      "discoveryCount": 6,
-      "responseTime": 285,
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:43:14.9061925-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.167689-08:00",
+      "discoveryCount": 7,
+      "responseTime": 131,
       "openPorts": [
         {
-          "port": 1,
-          "serviceName": "Port 1",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 7,
-          "serviceName": "Port 7",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 9,
-          "serviceName": "Port 9",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 13,
-          "serviceName": "Port 13",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 15,
-          "serviceName": "Port 15",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 17,
-          "serviceName": "Port 17",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 18,
-          "serviceName": "Port 18",
+          "port": 20,
+          "serviceName": "FTP Data",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
@@ -1320,15 +845,15 @@
           "banner": ""
         },
         {
-          "port": 37,
-          "serviceName": "Port 37",
+          "port": 53,
+          "serviceName": "DNS",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 42,
-          "serviceName": "Port 42",
+          "port": 80,
+          "serviceName": "HTTP",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
@@ -1336,37 +861,262 @@
       ],
       "deviceType": 13,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:43:14.9061954-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
+      "uptimeTrend": "New",
+      "riskScore": 63
+    },
+    {
+      "ipAddress": "192.168.7.252",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:43:46.7924742-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.1694781-08:00",
+      "discoveryCount": 7,
+      "responseTime": 497,
+      "openPorts": [],
+      "deviceType": 0,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Windows",
       "netBiosName": "",
       "connectionType": "Unknown",
       "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\uD83D\uDCE7",
-      "deviceColor": "#009688",
+      "onlineHistory": [
+        "2026-01-17T19:43:46.7924793-08:00"
+      ],
+      "ttl": 128,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E",
       "riskIcon": "\u26AA",
       "riskColor": "#9E9E9E",
       "uptimeTrend": "New",
-      "riskScore": 60
+      "riskScore": 0
+    },
+    {
+      "ipAddress": "192.168.7.240",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:43:26.8978843-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.1726689-08:00",
+      "discoveryCount": 7,
+      "responseTime": 69,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "serviceName": "HTTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Cisco/Network",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:43:26.8978882-08:00"
+      ],
+      "ttl": 255,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
+      "uptimeTrend": "New",
+      "riskScore": 63
+    },
+    {
+      "ipAddress": "192.168.7.205",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:42:52.6632877-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.1971484-08:00",
+      "discoveryCount": 7,
+      "responseTime": 35,
+      "openPorts": [
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 80,
+          "serviceName": "HTTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 110,
+          "serviceName": "POP3",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Cisco/Network",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:42:52.6632915-08:00"
+      ],
+      "ttl": 255,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
+      "uptimeTrend": "New",
+      "riskScore": 63
+    },
+    {
+      "ipAddress": "192.168.7.247",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:43:39.3522978-08:00",
+      "firstDiscovered": "2026-01-17T14:43:05.9979594-08:00",
+      "discoveryCount": 7,
+      "responseTime": 280,
+      "openPorts": [],
+      "deviceType": 0,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 0,
+      "onlineHistory": [
+        "2026-01-17T19:43:39.3523-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E",
+      "riskIcon": "\u26AA",
+      "riskColor": "#9E9E9E",
+      "uptimeTrend": "New",
+      "riskScore": 0
+    },
+    {
+      "ipAddress": "192.168.100.1",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:43:50.5442086-08:00",
+      "firstDiscovered": "2026-01-17T14:54:32.5946017-08:00",
+      "discoveryCount": 7,
+      "responseTime": 48,
+      "openPorts": [],
+      "deviceType": 0,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Embedded",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 0,
+      "onlineHistory": [
+        "2026-01-17T19:43:50.5442136-08:00"
+      ],
+      "ttl": 63,
+      "deviceIcon": "\u2753",
+      "deviceColor": "#9E9E9E",
+      "riskIcon": "\u26AA",
+      "riskColor": "#9E9E9E",
+      "uptimeTrend": "New",
+      "riskScore": 0
     },
     {
       "ipAddress": "192.168.144.1",
       "hostName": "DESKTOP-9619J6O.mshome.net",
-      "macAddress": "00:15:5D:40:0B:8D",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:19:46.2752018-08:00",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:43:56.7076759-08:00",
       "firstDiscovered": "2026-01-17T15:00:07.7749275-08:00",
-      "discoveryCount": 6,
-      "responseTime": 284,
+      "discoveryCount": 7,
+      "responseTime": 36,
       "openPorts": [],
       "deviceType": 0,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Windows",
       "netBiosName": "",
       "connectionType": "Unknown",
       "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
+      "onlineHistory": [
+        "2026-01-17T19:43:56.70768-08:00"
+      ],
+      "ttl": 128,
       "deviceIcon": "\u2753",
       "deviceColor": "#9E9E9E",
       "riskIcon": "\u26AA",
@@ -1377,205 +1127,240 @@
     {
       "ipAddress": "192.168.7.188",
       "hostName": "Unknown",
-      "macAddress": "D8:A0:11:77:8D:D4",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:18:35.0746611-08:00",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:42:26.6120336-08:00",
       "firstDiscovered": "2026-01-17T16:46:47.623135-08:00",
-      "discoveryCount": 7,
-      "responseTime": 131,
+      "discoveryCount": 8,
+      "responseTime": 246,
       "openPorts": [
         {
-          "port": 1,
-          "serviceName": "Port 1",
+          "port": 20,
+          "serviceName": "FTP Data",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 7,
-          "serviceName": "Port 7",
+          "port": 21,
+          "serviceName": "FTP Control",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 9,
-          "serviceName": "Port 9",
+          "port": 22,
+          "serviceName": "SSH",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 11,
-          "serviceName": "Port 11",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 15,
-          "serviceName": "Port 15",
-          "protocol": "TCP",
-          "isOpen": true,
-          "banner": ""
-        },
-        {
-          "port": 17,
-          "serviceName": "Port 17",
+          "port": 25,
+          "serviceName": "SMTP",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         }
       ],
-      "deviceType": 0,
+      "deviceType": 13,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "riskLevel": 3,
+      "onlineHistory": [
+        "2026-01-17T19:42:26.6120396-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDFE0",
+      "riskColor": "#F57C00",
       "uptimeTrend": "New",
-      "riskScore": 0
+      "riskScore": 30
     },
     {
       "ipAddress": "192.168.7.186",
       "hostName": "Unknown",
-      "macAddress": "D0:73:D5:81:A9:CF",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:15:04.8522742-08:00",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:42:15.2822465-08:00",
       "firstDiscovered": "2026-01-17T16:46:47.6245558-08:00",
-      "discoveryCount": 7,
-      "responseTime": 59,
-      "openPorts": [],
-      "deviceType": 0,
-      "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
-      "netBiosName": "",
-      "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
-      "uptimeTrend": "New",
-      "riskScore": 0
-    },
-    {
-      "ipAddress": "192.168.7.191",
-      "hostName": "Unknown",
-      "macAddress": "CC:40:85:44:FD:3C",
-      "isOnline": false,
-      "lastSeen": "2026-01-17T18:18:42.0352175-08:00",
-      "firstDiscovered": "2026-01-17T16:46:47.6266777-08:00",
-      "discoveryCount": 6,
-      "responseTime": 564,
+      "discoveryCount": 8,
+      "responseTime": 98,
       "openPorts": [
         {
-          "port": 1,
-          "serviceName": "Port 1",
+          "port": 20,
+          "serviceName": "FTP Data",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 11,
-          "serviceName": "Port 11",
+          "port": 22,
+          "serviceName": "SSH",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 13,
-          "serviceName": "Port 13",
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         }
       ],
-      "deviceType": 0,
+      "deviceType": 13,
       "manufacturer": "Unknown",
-      "operatingSystem": "Unknown",
+      "operatingSystem": "Cisco/Network",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
-      "onlineHistory": [],
-      "ttl": 0,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "riskLevel": 3,
+      "onlineHistory": [
+        "2026-01-17T19:42:15.2822499-08:00"
+      ],
+      "ttl": 255,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDFE0",
+      "riskColor": "#F57C00",
       "uptimeTrend": "New",
-      "riskScore": 0
+      "riskScore": 40
+    },
+    {
+      "ipAddress": "192.168.7.191",
+      "hostName": "Unknown",
+      "macAddress": "Unknown",
+      "isOnline": true,
+      "lastSeen": "2026-01-17T19:42:39.0014604-08:00",
+      "firstDiscovered": "2026-01-17T16:46:47.6266777-08:00",
+      "discoveryCount": 7,
+      "responseTime": 185,
+      "openPorts": [
+        {
+          "port": 20,
+          "serviceName": "FTP Data",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 21,
+          "serviceName": "FTP Control",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 22,
+          "serviceName": "SSH",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 23,
+          "serviceName": "Telnet",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        },
+        {
+          "port": 25,
+          "serviceName": "SMTP",
+          "protocol": "TCP",
+          "isOpen": true,
+          "banner": ""
+        }
+      ],
+      "deviceType": 13,
+      "manufacturer": "Unknown",
+      "operatingSystem": "Linux/Mac/iOS",
+      "netBiosName": "",
+      "connectionType": "Unknown",
+      "riskLevel": 4,
+      "onlineHistory": [
+        "2026-01-17T19:42:39.0014642-08:00"
+      ],
+      "ttl": 64,
+      "deviceIcon": "\uD83D\uDCE7",
+      "deviceColor": "#009688",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
+      "uptimeTrend": "New",
+      "riskScore": 60
     },
     {
       "ipAddress": "192.168.7.180",
       "hostName": "Unknown",
       "macAddress": "Unknown",
       "isOnline": true,
-      "lastSeen": "2026-01-17T19:36:59.2083636-08:00",
+      "lastSeen": "2026-01-17T19:42:04.000305-08:00",
       "firstDiscovered": "2026-01-17T16:46:48.3444873-08:00",
-      "discoveryCount": 7,
-      "responseTime": 429,
+      "discoveryCount": 8,
+      "responseTime": 99,
       "openPorts": [
         {
-          "port": 1,
-          "serviceName": "Port 1",
+          "port": 20,
+          "serviceName": "FTP Data",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 7,
-          "serviceName": "Port 7",
+          "port": 21,
+          "serviceName": "FTP Control",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 9,
-          "serviceName": "Port 9",
+          "port": 22,
+          "serviceName": "SSH",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 11,
-          "serviceName": "Port 11",
+          "port": 23,
+          "serviceName": "Telnet",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         },
         {
-          "port": 13,
-          "serviceName": "Port 13",
+          "port": 80,
+          "serviceName": "HTTP",
           "protocol": "TCP",
           "isOpen": true,
           "banner": ""
         }
       ],
-      "deviceType": 0,
+      "deviceType": 2,
       "manufacturer": "Unknown",
       "operatingSystem": "Cisco/Network",
       "netBiosName": "",
       "connectionType": "Unknown",
-      "riskLevel": 0,
+      "riskLevel": 4,
       "onlineHistory": [
-        "2026-01-17T19:36:59.2083654-08:00"
+        "2026-01-17T19:42:04.0003091-08:00"
       ],
       "ttl": 255,
-      "deviceIcon": "\u2753",
-      "deviceColor": "#9E9E9E",
-      "riskIcon": "\u26AA",
-      "riskColor": "#9E9E9E",
+      "deviceIcon": "\uD83D\uDDA5\uFE0F",
+      "deviceColor": "#2196F3",
+      "riskIcon": "\uD83D\uDD34",
+      "riskColor": "#D32F2F",
       "uptimeTrend": "New",
-      "riskScore": 0
+      "riskScore": 63
     }
   ]
 }
