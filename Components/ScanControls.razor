@@ -5,12 +5,13 @@
     <div class="control-group">
         <label>IP Range</label>
         <div class="ip-input-group">
-            <input type="text" @bind="Options.IpRange" class="ip-range-input" placeholder="192.168.1" disabled="@IsScanning" />
+            <input type="text" @bind="Options.IpRange" @bind:after="OnIpRangeChanged" class="ip-range-input" placeholder="e.g. 192.168.1" disabled="@IsScanning" />
             <span class="ip-separator">.</span>
             <input type="number" @bind="Options.StartAddress" min="1" max="254" class="ip-number-input" disabled="@IsScanning" />
             <span class="ip-separator">-</span>
             <input type="number" @bind="Options.EndAddress" min="1" max="254" class="ip-number-input" disabled="@IsScanning" />
         </div>
+        <small class="help-text">@GetScanScopeHint()</small>
     </div>
 
     <div class="control-group">
@@ -63,6 +64,12 @@
             <button class="btn btn-primary" @onclick="OnStartClicked">
                 🚀 Start Scan
             </button>
+            @if (HasKnownDevices)
+            {
+                <button class="btn btn-secondary" @onclick="OnRefreshClicked" title="Quick refresh of previously discovered devices">
+                    🔄 Refresh Known
+                </button>
+            }
         }
     </div>
 </div>
@@ -70,8 +77,34 @@
 @code {
     [Parameter] public ScanOptions Options { get; set; } = new();
     [Parameter] public bool IsScanning { get; set; }
+    [Parameter] public bool HasKnownDevices { get; set; }
     [Parameter] public EventCallback OnStartScan { get; set; }
     [Parameter] public EventCallback OnStopScan { get; set; }
+    [Parameter] public EventCallback OnRefreshKnown { get; set; }
+
+    private async Task OnRefreshClicked()
+    {
+        await OnRefreshKnown.InvokeAsync();
+    }
+
+    private void OnIpRangeChanged()
+    {
+        // Trigger a re-render to update the scope hint
+        StateHasChanged();
+    }
+
+    private string GetScanScopeHint()
+    {
+        var input = Options.IpRange?.TrimEnd('.') ?? "";
+        var parts = input.Split('.').Where(p => int.TryParse(p, out int v) && v >= 0 && v <= 255).ToArray();
+        
+        return parts.Length switch
+        {
+            0 or 1 => "⚠️ Enter at least 2 octets (e.g. 192.168)",
+            2 => $"🌐 Broad scan: {parts[0]}.{parts[1]}.0-255.{Options.StartAddress}-{Options.EndAddress} ({256 * (Options.EndAddress - Options.StartAddress + 1):N0} IPs)",
+            _ => $"📍 Subnet scan: {parts[0]}.{parts[1]}.{parts[2]}.{Options.StartAddress}-{Options.EndAddress} ({Options.EndAddress - Options.StartAddress + 1} IPs)"
+        };
+    }
 
     private async Task OnStartClicked()
     {

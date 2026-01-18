@@ -226,6 +226,22 @@ body {
     box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
 }
 
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+}
+
+.action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 /* ===== Progress Panel ===== */
 .progress-panel {
     background: var(--card-bg);
@@ -595,9 +611,20 @@ body {
     border-top: 1px solid var(--border-color);
 }
 
-.last-seen {
-    font-size: 0.75rem;
+.device-timestamps {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.last-seen,
+.first-discovered,
+.discovery-count {
+    font-size: 0.7rem;
     color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 /* ===== Device Table ===== */

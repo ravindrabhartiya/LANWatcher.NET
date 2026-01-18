@@ -12,6 +12,7 @@ public interface IScanService
     event EventHandler<NetworkDevice>? OnDeviceFound;
     event EventHandler<List<NetworkDevice>>? OnScanComplete;
     Task StartScanAsync();
+    Task RefreshKnownDevicesAsync();
     void StopScan();
     string GetLocalIpRange();
 }
@@ -70,7 +71,7 @@ public class ScanService : IScanService
         }
 
         _cancellationTokenSource = new CancellationTokenSource();
-        _repository.ClearDevices();
+        // Don't clear devices - we want to merge with existing data
 
         Progress = new ScanProgress
         {
@@ -87,7 +88,7 @@ public class ScanService : IScanService
             var devices = await _scanner.ScanNetworkAsync(Options, _cancellationTokenSource.Token);
             _repository.UpdateDevices(devices);
 
-            OnScanComplete?.Invoke(this, devices);
+            OnScanComplete?.Invoke(this, _repository.GetAllDevices());
         }
         catch (OperationCanceledException)
         {
@@ -108,5 +109,83 @@ public class ScanService : IScanService
     {
         _cancellationTokenSource?.Cancel();
         _logger.LogInformation("Scan stop requested");
+    }
+
+    public async Task RefreshKnownDevicesAsync()
+    {
+        if (IsScanning)
+        {
+            _logger.LogWarning("Scan already in progress");
+            return;
+        }
+
+        var knownDevices = _repository.GetAllDevices();
+        if (!knownDevices.Any())
+        {
+            _logger.LogInformation("No known devices to refresh");
+            return;
+        }
+
+        _cancellationTokenSource = new CancellationTokenSource();
+
+        Progress = new ScanProgress
+        {
+            IsScanning = true,
+            StartTime = DateTime.Now,
+            TotalAddresses = knownDevices.Count
+        };
+        OnProgressChanged?.Invoke(this, Progress);
+
+        try
+        {
+            _logger.LogInformation("Refreshing {Count} known devices", knownDevices.Count);
+
+            var refreshedDevices = new List<NetworkDevice>();
+            
+            foreach (var device in knownDevices)
+            {
+                if (_cancellationTokenSource.Token.IsCancellationRequested)
+                    break;
+
+                Progress.CurrentIp = device.IpAddress;
+                Progress.CurrentAction = $"Checking {device.IpAddress}...";
+                OnProgressChanged?.Invoke(this, Progress);
+
+                var refreshed = await _scanner.ScanDeviceAsync(device.IpAddress, Options, _cancellationTokenSource.Token);
+                
+                if (refreshed.IsOnline)
+                {
+                    refreshedDevices.Add(refreshed);
+                    _repository.AddOrUpdateDevice(refreshed);
+                    OnDeviceFound?.Invoke(this, refreshed);
+                }
+                else
+                {
+                    // Mark device as offline
+                    device.IsOnline = false;
+                    _repository.AddOrUpdateDevice(device);
+                }
+
+                Progress.IncrementScanned();
+                OnProgressChanged?.Invoke(this, Progress);
+            }
+
+            OnScanComplete?.Invoke(this, _repository.GetAllDevices());
+            _logger.LogInformation("Refresh complete. {Online} of {Total} devices online", 
+                refreshedDevices.Count, knownDevices.Count);
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.LogInformation("Refresh was cancelled");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error during device refresh");
+        }
+        finally
+        {
+            Progress.IsScanning = false;
+            OnProgressChanged?.Invoke(this, Progress);
+        }
     }
 }

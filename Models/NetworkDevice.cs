@@ -7,6 +7,8 @@ public class NetworkDevice
     public string MacAddress { get; set; } = "Unknown";
     public bool IsOnline { get; set; }
     public DateTime LastSeen { get; set; }
+    public DateTime FirstDiscovered { get; set; } = DateTime.Now;
+    public int DiscoveryCount { get; set; } = 1;
     public int ResponseTime { get; set; } // in milliseconds
     public List<PortInfo> OpenPorts { get; set; } = new();
     public DeviceType DeviceType { get; set; } = DeviceType.Unknown;

@@ -5,16 +5,16 @@
 @inject IScanService ScanService
 @implements IDisposable
 
-<PageTitle>Network Device Discovery</PageTitle>
+<PageTitle>LAN Guardian</PageTitle>
 
 <div class="scanner-container">
     <header class="scanner-header">
         <div class="header-content">
-            <h1>🔍 Network Device Discovery</h1>
-            <p class="subtitle">Discover and map all devices on your local network</p>
+            <h1>🛡️ LAN Guardian</h1>
+            <p class="subtitle">Network Presence & Security Auditor</p>
         </div>
         <div class="header-info">
-            <span class="network-info">📡 Scanning: @ScanService.Options.IpRange.*</span>
+            <span class="network-info">📡 Scanning: @GetScanRangeDisplay()</span>
         </div>
     </header>
 
@@ -22,8 +22,10 @@
         <aside class="sidebar">
             <ScanControls Options="@ScanService.Options"
                          IsScanning="@ScanService.IsScanning"
+                         HasKnownDevices="@(_devices.Count > 0)"
                          OnStartScan="StartScan"
-                         OnStopScan="StopScan" />
+                         OnStopScan="StopScan"
+                         OnRefreshKnown="RefreshKnownDevices" />
 
             <ProgressPanel Progress="@_progress" />
         </aside>
@@ -46,13 +48,19 @@
         ScanService.OnDeviceFound += HandleDeviceFound;
         ScanService.OnScanComplete += HandleScanComplete;
         
+        // Load previously discovered devices immediately
         _devices = ScanService.Devices;
     }
 
     private async Task StartScan()
     {
-        _devices.Clear();
+        // Don't clear - we want to show existing devices and update them
         await ScanService.StartScanAsync();
+    }
+
+    private async Task RefreshKnownDevices()
+    {
+        await ScanService.RefreshKnownDevicesAsync();
     }
 
     private void StopScan()
@@ -74,8 +82,21 @@
 
     private void HandleScanComplete(object? sender, List<NetworkDevice> devices)
     {
-        _devices = devices;
+        _devices = ScanService.Devices;
         InvokeAsync(StateHasChanged);
+    }
+
+    private string GetScanRangeDisplay()
+    {
+        var input = ScanService.Options.IpRange?.TrimEnd('.') ?? "";
+        var parts = input.Split('.').Where(p => int.TryParse(p, out int v) && v >= 0 && v <= 255).ToArray();
+        
+        return parts.Length switch
+        {
+            2 => $"{parts[0]}.{parts[1]}.*.*",
+            3 => $"{parts[0]}.{parts[1]}.{parts[2]}.*",
+            _ => $"{input}.*"
+        };
     }
 
     public void Dispose()

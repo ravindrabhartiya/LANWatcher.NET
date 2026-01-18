@@ -45,7 +45,11 @@
     }
 
     <div class="device-footer">
-        <span class="last-seen">Last seen: @Device.LastSeen.ToString("HH:mm:ss")</span>
+        <div class="device-timestamps">
+            <span class="last-seen" title="Last seen">🕐 @Device.LastSeen.ToString("MM/dd HH:mm")</span>
+            <span class="first-discovered" title="First discovered">📅 @Device.FirstDiscovered.ToString("MM/dd")</span>
+            <span class="discovery-count" title="Times discovered">🔄 @Device.DiscoveryCount</span>
+        </div>
     </div>
 </div>
 

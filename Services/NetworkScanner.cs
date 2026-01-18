@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using LanWatcher.Models;
 
@@ -27,6 +28,55 @@ public class NetworkScanner : INetworkScanner
     public NetworkScanner(ILogger<NetworkScanner> logger)
     {
         _logger = logger;
+    }
+
+    /// <summary>
+    /// Normalizes an IP range and returns the number of octets provided.
+    /// </summary>
+    private static (string normalizedRange, int octetCount) ParseIpRange(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return ("192.168.1", 3);
+
+        // Remove any trailing dots
+        input = input.TrimEnd('.');
+        
+        var parts = input.Split('.');
+        
+        // Filter out empty parts and validate each octet is a number
+        var validParts = new List<string>();
+        foreach (var part in parts)
+        {
+            if (int.TryParse(part, out int octet) && octet >= 0 && octet <= 255)
+            {
+                validParts.Add(octet.ToString());
+            }
+        }
+
+        // Return based on how many valid octets we have
+        return validParts.Count switch
+        {
+            0 => ("192.168.1", 3),
+            1 => ($"{validParts[0]}", 1),
+            2 => ($"{validParts[0]}.{validParts[1]}", 2),
+            3 => ($"{validParts[0]}.{validParts[1]}.{validParts[2]}", 3),
+            _ => ($"{validParts[0]}.{validParts[1]}.{validParts[2]}", 3) // 4+ octets, use first 3
+        };
+    }
+
+    /// <summary>
+    /// Normalizes an IP range to ensure it has exactly 3 octets.
+    /// Handles inputs like "192.168", "192.168.1", or "192.168.1.100"
+    /// </summary>
+    private static string NormalizeIpRange(string input)
+    {
+        var (range, count) = ParseIpRange(input);
+        return count switch
+        {
+            1 => $"{range}.0.0",
+            2 => $"{range}.0",
+            _ => range
+        };
     }
 
     public string GetLocalIpRange()
@@ -56,9 +106,26 @@ public class NetworkScanner : INetworkScanner
     public async Task<List<NetworkDevice>> ScanNetworkAsync(ScanOptions options, CancellationToken cancellationToken = default)
     {
         var devices = new List<NetworkDevice>();
+        
+        // Parse the IP range to determine scan scope
+        var (ipRangeBase, octetCount) = ParseIpRange(options.IpRange);
+        
+        // Calculate total addresses based on octet count
+        int totalAddresses;
+        if (octetCount <= 2)
+        {
+            // Scanning across subnets: 256 subnets × (EndAddress - StartAddress + 1) hosts
+            totalAddresses = 256 * (options.EndAddress - options.StartAddress + 1);
+        }
+        else
+        {
+            // Single subnet scan
+            totalAddresses = options.EndAddress - options.StartAddress + 1;
+        }
+
         _progress = new ScanProgress
         {
-            TotalAddresses = options.EndAddress - options.StartAddress + 1,
+            TotalAddresses = totalAddresses,
             IsScanning = true,
             StartTime = DateTime.Now
         };
@@ -66,19 +133,47 @@ public class NetworkScanner : INetworkScanner
         // Create a fresh semaphore for each scan with the configured parallelism
         _semaphore = new SemaphoreSlim(options.MaxParallelScans, options.MaxParallelScans);
 
-        _logger.LogInformation("Starting network scan on {IpRange}.{Start}-{End}", 
-            options.IpRange, options.StartAddress, options.EndAddress);
+        if (octetCount <= 2)
+        {
+            _logger.LogInformation("Starting broad network scan on {IpRange}.0-255.{Start}-{End}", 
+                ipRangeBase, options.StartAddress, options.EndAddress);
+        }
+        else
+        {
+            _logger.LogInformation("Starting network scan on {IpRange}.{Start}-{End}", 
+                ipRangeBase, options.StartAddress, options.EndAddress);
+        }
 
         UpdateProgress("Initializing scan...");
 
         var tasks = new List<Task<NetworkDevice?>>();
 
-        for (int i = options.StartAddress; i <= options.EndAddress; i++)
+        if (octetCount <= 2)
         {
-            if (cancellationToken.IsCancellationRequested) break;
+            // Broad scan: iterate through all subnets (3rd octet 0-255)
+            for (int subnet = 0; subnet <= 255; subnet++)
+            {
+                if (cancellationToken.IsCancellationRequested) break;
 
-            var ipAddress = $"{options.IpRange}.{i}";
-            tasks.Add(ScanSingleHostAsync(ipAddress, options, cancellationToken));
+                for (int host = options.StartAddress; host <= options.EndAddress; host++)
+                {
+                    if (cancellationToken.IsCancellationRequested) break;
+
+                    var ipAddress = $"{ipRangeBase}.{subnet}.{host}";
+                    tasks.Add(ScanSingleHostAsync(ipAddress, options, cancellationToken));
+                }
+            }
+        }
+        else
+        {
+            // Single subnet scan
+            for (int i = options.StartAddress; i <= options.EndAddress; i++)
+            {
+                if (cancellationToken.IsCancellationRequested) break;
+
+                var ipAddress = $"{ipRangeBase}.{i}";
+                tasks.Add(ScanSingleHostAsync(ipAddress, options, cancellationToken));
+            }
         }
 
         // Process results as they complete using Task.WhenAll for maximum parallelism
@@ -159,6 +254,16 @@ public class NetworkScanner : INetworkScanner
                     device.HostName = "Unknown";
                 }
 
+                // Try to get MAC address from ARP table
+                try
+                {
+                    device.MacAddress = await GetMacAddressAsync(ipAddress);
+                }
+                catch
+                {
+                    device.MacAddress = "Unknown";
+                }
+
                 // Scan ports if enabled
                 if (options.ScanPorts)
                 {
@@ -182,6 +287,63 @@ public class NetworkScanner : INetworkScanner
         }
 
         return device;
+    }
+
+    /// <summary>
+    /// Gets the MAC address for an IP address using Windows SendARP API
+    /// </summary>
+    private Task<string> GetMacAddressAsync(string ipAddress)
+    {
+        return Task.Run(() =>
+        {
+            try
+            {
+                if (!IPAddress.TryParse(ipAddress, out var ip))
+                    return "Unknown";
+
+                // Only works for IPv4
+                if (ip.AddressFamily != AddressFamily.InterNetwork)
+                    return "Unknown";
+
+                var destIp = BitConverter.ToUInt32(ip.GetAddressBytes(), 0);
+                var macAddr = new byte[6];
+                var macAddrLen = macAddr.Length;
+
+                var result = NativeMethods.SendARP(destIp, 0, macAddr, ref macAddrLen);
+
+                if (result == 0)
+                {
+                    var physicalAddress = new PhysicalAddress(macAddr);
+                    var macString = physicalAddress.ToString();
+                    
+                    // Format as XX:XX:XX:XX:XX:XX
+                    if (macString.Length == 12)
+                    {
+                        return string.Join(":", Enumerable.Range(0, 6)
+                            .Select(i => macString.Substring(i * 2, 2)));
+                    }
+                    return macString;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug(ex, "Failed to get MAC address for {IpAddress}", ipAddress);
+            }
+
+            return "Unknown";
+        });
+    }
+
+    /// <summary>
+    /// Native methods for Windows IP Helper API
+    /// </summary>
+    private static class NativeMethods
+    {
+        /// <summary>
+        /// Sends an ARP request to obtain the physical address that corresponds to the specified IPv4 address.
+        /// </summary>
+        [DllImport("iphlpapi.dll", ExactSpelling = true)]
+        internal static extern int SendARP(uint destIP, uint srcIP, byte[] macAddr, ref int physicalAddrLen);
     }
 
     private async Task<List<PortInfo>> ScanPortsAsync(string ipAddress, int[] ports, int timeout, CancellationToken cancellationToken)

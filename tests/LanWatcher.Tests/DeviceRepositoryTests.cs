@@ -1,16 +1,49 @@
 using FluentAssertions;
 using LanWatcher.Models;
 using LanWatcher.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+using Moq;
 
 namespace LanWatcher.Tests;
 
-public class DeviceRepositoryTests
+public class DeviceRepositoryTests : IDisposable
 {
+    private readonly string _testFolder;
+
+    public DeviceRepositoryTests()
+    {
+        // Create a unique folder for each test instance
+        _testFolder = Path.Combine(Path.GetTempPath(), $"LanWatcherTests_{Guid.NewGuid()}");
+        Directory.CreateDirectory(_testFolder);
+    }
+
+    public void Dispose()
+    {
+        // Clean up test folder
+        try
+        {
+            if (Directory.Exists(_testFolder))
+            {
+                Directory.Delete(_testFolder, true);
+            }
+        }
+        catch { /* Ignore cleanup errors */ }
+    }
+
+    private DeviceRepository CreateRepository()
+    {
+        var logger = new Mock<ILogger<DeviceRepository>>();
+        var environment = new Mock<IWebHostEnvironment>();
+        environment.Setup(e => e.ContentRootPath).Returns(_testFolder);
+        return new DeviceRepository(logger.Object, environment.Object);
+    }
+
     [Fact]
     public void NewRepository_ShouldBeEmpty()
     {
         // Arrange & Act
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
 
         // Assert
         repository.GetAllDevices().Should().BeEmpty();
@@ -20,7 +53,7 @@ public class DeviceRepositoryTests
     public void AddOrUpdateDevice_ShouldAddNewDevice()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
         var device = new NetworkDevice
         {
             IpAddress = "192.168.1.1",
@@ -41,7 +74,7 @@ public class DeviceRepositoryTests
     public void AddOrUpdateDevice_ShouldUpdateExistingDevice()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
         var device1 = new NetworkDevice
         {
             IpAddress = "192.168.1.1",
@@ -66,7 +99,7 @@ public class DeviceRepositoryTests
     public void GetDevice_ShouldReturnNull_ForNonexistentDevice()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
 
         // Act & Assert
         repository.GetDevice("192.168.1.999").Should().BeNull();
@@ -76,7 +109,7 @@ public class DeviceRepositoryTests
     public void ClearDevices_ShouldRemoveAllDevices()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.1" });
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.2" });
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.3" });
@@ -89,10 +122,10 @@ public class DeviceRepositoryTests
     }
 
     [Fact]
-    public void UpdateDevices_ShouldReplaceAllDevices()
+    public void UpdateDevices_ShouldMergeDevices()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.1" });
         
         var newDevices = new List<NetworkDevice>
@@ -105,8 +138,8 @@ public class DeviceRepositoryTests
         repository.UpdateDevices(newDevices);
 
         // Assert
-        repository.GetAllDevices().Should().HaveCount(2);
-        repository.GetDevice("192.168.1.1").Should().BeNull();
+        repository.GetAllDevices().Should().HaveCount(3); // Merged, not replaced
+        repository.GetDevice("192.168.1.1").Should().NotBeNull(); // Still exists
         repository.GetDevice("192.168.1.10").Should().NotBeNull();
         repository.GetDevice("192.168.1.20").Should().NotBeNull();
     }
@@ -115,7 +148,7 @@ public class DeviceRepositoryTests
     public void GetAllDevices_ShouldReturnDevicesSortedByIpAddress()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.100" });
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.1" });
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.50" });
@@ -134,7 +167,7 @@ public class DeviceRepositoryTests
     public void OnDevicesChanged_ShouldFireEvent_WhenDeviceAdded()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
         var eventFired = false;
         repository.OnDevicesChanged += (s, e) => eventFired = true;
 
@@ -149,7 +182,7 @@ public class DeviceRepositoryTests
     public void OnDevicesChanged_ShouldFireEvent_WhenDevicesCleared()
     {
         // Arrange
-        var repository = new DeviceRepository();
+        var repository = CreateRepository();
         repository.AddOrUpdateDevice(new NetworkDevice { IpAddress = "192.168.1.1" });
         var eventFired = false;
         repository.OnDevicesChanged += (s, e) => eventFired = true;
