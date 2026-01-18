@@ -1,7 +1,7 @@
 @using LanWatcher.Models
 
 <div class="stats-dashboard">
-    <div class="stat-card">
+    <div class="stat-card clickable @(ActiveFilter == "all" ? "active" : "")" @onclick='() => SetFilter("all")'>
         <div class="stat-icon">📡</div>
         <div class="stat-content">
             <span class="stat-number">@TotalDevices</span>
@@ -9,23 +9,15 @@
         </div>
     </div>
 
-    <div class="stat-card">
-        <div class="stat-icon">🔌</div>
+    <div class="stat-card clickable @(ActiveFilter == "online" ? "active" : "")" @onclick='() => SetFilter("online")'>
+        <div class="stat-icon">🟢</div>
         <div class="stat-content">
-            <span class="stat-number">@TotalOpenPorts</span>
-            <span class="stat-label">Open Ports</span>
+            <span class="stat-number">@OnlineDevices</span>
+            <span class="stat-label">Online Now</span>
         </div>
     </div>
 
-    <div class="stat-card">
-        <div class="stat-icon">🖥️</div>
-        <div class="stat-content">
-            <span class="stat-number">@WebServers</span>
-            <span class="stat-label">Web Servers</span>
-        </div>
-    </div>
-
-    <div class="stat-card warning">
+    <div class="stat-card warning clickable @(ActiveFilter == "risks" ? "active" : "")" @onclick='() => SetFilter("risks")'>
         <div class="stat-icon">⚠️</div>
         <div class="stat-content">
             <span class="stat-number">@PotentialRisks</span>
@@ -33,7 +25,15 @@
         </div>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card clickable @(ActiveFilter == "webservers" ? "active" : "")" @onclick='() => SetFilter("webservers")'>
+        <div class="stat-icon">🖥️</div>
+        <div class="stat-content">
+            <span class="stat-number">@WebServers</span>
+            <span class="stat-label">Web Servers</span>
+        </div>
+    </div>
+
+    <div class="stat-card clickable @(ActiveFilter == "printers" ? "active" : "")" @onclick='() => SetFilter("printers")'>
         <div class="stat-icon">🖨️</div>
         <div class="stat-content">
             <span class="stat-number">@Printers</span>
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card clickable @(ActiveFilter == "cameras" ? "active" : "")" @onclick='() => SetFilter("cameras")'>
         <div class="stat-icon">📷</div>
         <div class="stat-content">
             <span class="stat-number">@Cameras</span>
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card clickable @(ActiveFilter == "smart" ? "active" : "")" @onclick='() => SetFilter("smart")'>
         <div class="stat-icon">🏠</div>
         <div class="stat-content">
             <span class="stat-number">@SmartDevices</span>
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card clickable @(ActiveFilter == "unknown" ? "active" : "")" @onclick='() => SetFilter("unknown")'>
         <div class="stat-icon">❓</div>
         <div class="stat-content">
             <span class="stat-number">@UnknownDevices</span>
@@ -66,10 +66,21 @@
     </div>
 </div>
 
+@if (!string.IsNullOrEmpty(ActiveFilter) && ActiveFilter != "all")
+{
+    <div class="filter-indicator">
+        <span>Filtering: <strong>@GetFilterLabel()</strong> (@FilteredCount devices)</span>
+        <button class="clear-filter-btn" @onclick='() => SetFilter("all")'>✕ Clear</button>
+    </div>
+}
+
 @code {
     [Parameter] public List<NetworkDevice> Devices { get; set; } = new();
+    [Parameter] public string ActiveFilter { get; set; } = "all";
+    [Parameter] public EventCallback<string> OnFilterChanged { get; set; }
 
     private int TotalDevices => Devices.Count;
+    private int OnlineDevices => Devices.Count(d => d.IsOnline);
     private int TotalOpenPorts => Devices.Sum(d => d.OpenPorts.Count);
     private int WebServers => Devices.Count(d => d.DeviceType == DeviceType.WebServer);
     private int Printers => Devices.Count(d => d.DeviceType == DeviceType.Printer);
@@ -77,9 +88,36 @@
     private int SmartDevices => Devices.Count(d => d.DeviceType == DeviceType.SmartHome || d.DeviceType == DeviceType.SmartTV);
     private int UnknownDevices => Devices.Count(d => d.DeviceType == DeviceType.Unknown);
 
-    // Potential risks: devices with telnet, open databases, or many open ports
+    // Potential risks: devices with high/critical risk level
     private int PotentialRisks => Devices.Count(d => 
-        d.OpenPorts.Any(p => p.Port == 23) || // Telnet
-        d.OpenPorts.Any(p => new[] { 3306, 5432, 27017, 6379 }.Contains(p.Port)) || // Databases
-        d.OpenPorts.Count > 10); // Many open ports
+        d.RiskLevel == RiskLevel.High || d.RiskLevel == RiskLevel.Critical);
+
+    private int FilteredCount => ActiveFilter switch
+    {
+        "online" => OnlineDevices,
+        "risks" => PotentialRisks,
+        "webservers" => WebServers,
+        "printers" => Printers,
+        "cameras" => Cameras,
+        "smart" => SmartDevices,
+        "unknown" => UnknownDevices,
+        _ => TotalDevices
+    };
+
+    private string GetFilterLabel() => ActiveFilter switch
+    {
+        "online" => "Online Devices",
+        "risks" => "Potential Risks",
+        "webservers" => "Web Servers",
+        "printers" => "Printers",
+        "cameras" => "Cameras",
+        "smart" => "Smart Devices",
+        "unknown" => "Unknown Devices",
+        _ => "All Devices"
+    };
+
+    private async Task SetFilter(string filter)
+    {
+        await OnFilterChanged.InvokeAsync(filter);
+    }
 }

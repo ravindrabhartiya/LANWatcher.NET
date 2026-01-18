@@ -375,6 +375,32 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.stat-card.clickable {
+    cursor: pointer;
+    position: relative;
+}
+
+.stat-card.clickable::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.stat-card.clickable:hover::after {
+    border-color: var(--primary-color);
+}
+
+.stat-card.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+.stat-card.active .stat-label {
+    color: rgba(255, 255, 255, 0.8);
+}
+
 .stat-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
@@ -401,6 +427,43 @@ body {
 .stat-card .stat-label {
     font-size: 0.8rem;
     color: var(--text-secondary);
+}
+
+/* Filter Indicator */
+.filter-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+.filter-indicator span {
+    font-size: 0.9rem;
+}
+
+.filter-indicator strong {
+    color: var(--primary-color);
+}
+
+.clear-filter-btn {
+    background: transparent;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clear-filter-btn:hover {
+    background: var(--danger-color);
+    border-color: var(--danger-color);
+    color: white;
 }
 
 /* ===== Network Map Container ===== */

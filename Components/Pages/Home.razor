@@ -31,9 +31,11 @@
         </aside>
 
         <main class="main-content">
-            <StatsDashboard Devices="@_devices" />
+            <StatsDashboard Devices="@_devices" 
+                           ActiveFilter="@_activeFilter"
+                           OnFilterChanged="HandleFilterChanged" />
             
-            <NetworkMap Devices="@_devices" />
+            <NetworkMap Devices="@FilteredDevices" />
         </main>
     </div>
 </div>
@@ -41,6 +43,19 @@
 @code {
     private List<NetworkDevice> _devices = new();
     private ScanProgress _progress = new();
+    private string _activeFilter = "all";
+
+    private List<NetworkDevice> FilteredDevices => _activeFilter switch
+    {
+        "online" => _devices.Where(d => d.IsOnline).ToList(),
+        "risks" => _devices.Where(d => d.RiskLevel == RiskLevel.High || d.RiskLevel == RiskLevel.Critical).ToList(),
+        "webservers" => _devices.Where(d => d.DeviceType == DeviceType.WebServer).ToList(),
+        "printers" => _devices.Where(d => d.DeviceType == DeviceType.Printer).ToList(),
+        "cameras" => _devices.Where(d => d.DeviceType == DeviceType.Camera).ToList(),
+        "smart" => _devices.Where(d => d.DeviceType == DeviceType.SmartHome || d.DeviceType == DeviceType.SmartTV).ToList(),
+        "unknown" => _devices.Where(d => d.DeviceType == DeviceType.Unknown).ToList(),
+        _ => _devices
+    };
 
     protected override void OnInitialized()
     {
@@ -84,6 +99,12 @@
     {
         _devices = ScanService.Devices;
         InvokeAsync(StateHasChanged);
+    }
+
+    private void HandleFilterChanged(string filter)
+    {
+        _activeFilter = filter;
+        StateHasChanged();
     }
 
     private string GetScanRangeDisplay()
