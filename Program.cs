@@ -13,6 +13,9 @@ builder.Services.AddSingleton<IDeviceRepository, DeviceRepository>();
 builder.Services.AddSingleton<INetworkScanner, NetworkScanner>();
 builder.Services.AddSingleton<IScanService, ScanService>();
 
+// Background service for periodic device refresh
+builder.Services.AddHostedService<DeviceRefreshService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

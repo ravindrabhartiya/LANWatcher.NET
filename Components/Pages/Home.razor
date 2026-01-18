@@ -3,6 +3,7 @@
 @using LanWatcher.Services
 @rendermode InteractiveServer
 @inject IScanService ScanService
+@inject IDeviceRepository DeviceRepository
 @implements IDisposable
 
 <PageTitle>LAN Guardian</PageTitle>
@@ -62,6 +63,7 @@
         ScanService.OnProgressChanged += HandleProgressChanged;
         ScanService.OnDeviceFound += HandleDeviceFound;
         ScanService.OnScanComplete += HandleScanComplete;
+        DeviceRepository.OnDevicesChanged += HandleDevicesChanged;
         
         // Load previously discovered devices immediately
         _devices = ScanService.Devices;
@@ -101,6 +103,12 @@
         InvokeAsync(StateHasChanged);
     }
 
+    private void HandleDevicesChanged(object? sender, List<NetworkDevice> devices)
+    {
+        _devices = devices;
+        InvokeAsync(StateHasChanged);
+    }
+
     private void HandleFilterChanged(string filter)
     {
         _activeFilter = filter;
@@ -125,5 +133,6 @@
         ScanService.OnProgressChanged -= HandleProgressChanged;
         ScanService.OnDeviceFound -= HandleDeviceFound;
         ScanService.OnScanComplete -= HandleScanComplete;
+        DeviceRepository.OnDevicesChanged -= HandleDevicesChanged;
     }
 }
